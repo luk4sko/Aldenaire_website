@@ -1079,126 +1079,180 @@ body.rezervacia_page .container {
 
 /* Hlavný obsah pod headerom */
 .trainers-page {
-    padding: 20px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
 }
-
-/* Sekcia trénera */
-.trainer {
-    display: flex;
-    align-items: stretch;
-    gap: 40px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* Obrázok trénera */
-.trainer-image img {
-    width: 400px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s;
-}
-
-.trainer-image img:hover {
-    transform: scale(1.05);
-}
-
-/* Informácie o trénerovi */
-.trainer-info {
-    flex: 1;
-}
-
-/* Meno trénera */
-.trainer-info h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    font-family: 'Arial Black', sans-serif;
-    color: #fff;
-    margin-bottom: 15px;
+.trainers-page h1 {
+    font-size: 2.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-align: center;
+    color: #fff;
+    margin-bottom: 8px;
+}
+.trainers-intro {
+    text-align: center;
+    color: #e6e6e6;
+    font-size: 1.15rem;
+    margin-bottom: 34px;
 }
 
-/* Celkový text v card */
-.trainer-info p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #f0f0f0;
-    margin-bottom: 10px;
+/* Mriežka trénerov */
+.trainers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    align-items: stretch;
 }
 
-/* Zvýraznenie špecializácií */
-.trainer-info p strong,
-.trainer-info p span.specialization {
-    font-weight: 700;
-    color: #ffd700;
-}
-
-/* Cena tréningu */
-.trainer-info .price {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #ffdd57;
-    margin-top: 15px;
-}
-
-/* Tlačidlo rezervácie */
-.trainer-info .btn {
-    font-size: 1.2rem;
-    padding: 12px 25px;
-    display: inline-block;
-    margin-top: 10px;
-    background-color: #007bff; 
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.trainer-info .btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-/* Reverzné rozloženie pre druhého trénera */
-.trainer.reverse {
-    flex-direction: row-reverse;
-}
-
-/* Trainer card s blur pozadím */
+/* Karta trénera */
 .trainer-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.trainer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.45);
+}
+.trainer-card.featured {
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
-/* Reverzné rozloženie pre druhého trénera */
-.trainer-card.reverse .trainer {
-    flex-direction: row-reverse;
+/* Odznak "Top tréner" */
+.trainer-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #000;
+    background: #ffd700;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Fotka trénera */
+.trainer-photo {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+.trainer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+.trainer-card:hover .trainer-photo img {
+    transform: scale(1.06);
+}
+
+/* Telo karty */
+.trainer-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px;
+}
+.trainer-body h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Štítky špecializácií */
+.trainer-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.chip {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffd700;
+    padding: 4px 11px;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 0.08);
+}
+
+/* Krátky popis */
+.trainer-bio {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: #eaeaea;
+    margin-bottom: 16px;
+}
+
+/* Riadok so štatistikami */
+.trainer-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.trainer-stats li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.98rem;
+    color: #f0f0f0;
+}
+.trainer-stats li i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+/* Tlačidlo rezervácie – zlaté, ladí so zvyškom stránky */
+.trainer-btn {
+    margin-top: auto;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    background: #ffd700;
+    color: #000;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: transform 0.2s, background 0.2s;
+}
+.trainer-btn:hover {
+    background: #ffdd57;
+    transform: scale(1.03);
 }
 
 /* Responzívne */
-@media screen and (max-width: 900px) {
-    .trainer-card .trainer {
-        flex-direction: column;
-        align-items: center;
+@media screen and (max-width: 620px) {
+    .trainers-page h1 {
+        font-size: 2.2rem;
     }
-
-    .trainer-card .trainer-image img {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-    }
-
-    .trainer-card .trainer-info {
-        text-align: center;
+    .trainer-photo {
+        height: 240px;
     }
 }
 

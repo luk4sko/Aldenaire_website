@@ -10,6 +10,9 @@ require 'db_config.php';
 
 $username = $_SESSION['username'];
 
+// Predvyplnenie trénera z odkazu na stránke Tréneri (?trener=...)
+$preselTrener = $_GET['trener'] ?? '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $typ = $_POST['Typ'];
     $trener = $_POST['Trener'];
@@ -67,7 +70,7 @@ if ($datum == date('Y-m-d')) {
 <head>
 <meta charset="UTF-8">
 <title>Tréningy</title>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="rezervacia_page">
@@ -92,9 +95,9 @@ if ($datum == date('Y-m-d')) {
 
                 <label>Tréner:</label>
                 <select name="Trener" class="arrow" required>
-                    <option value="Peto">Peto - 25€</option>
-                    <option value="Marko">⭐ Marko - 35€ </option>
-                    <option value="Marek">Marek - 25€</option>
+                    <option value="Peto" <?php if($preselTrener === 'Peto') echo 'selected'; ?>>Peto - 25€</option>
+                    <option value="Marko" <?php if($preselTrener === 'Marko') echo 'selected'; ?>>⭐ Marko - 35€ </option>
+                    <option value="Marek" <?php if($preselTrener === 'Marek') echo 'selected'; ?>>Marek - 25€</option>
                 </select>
 
                 <label>Dátum:</label>
