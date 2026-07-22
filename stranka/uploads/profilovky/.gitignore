@@ -1,0 +1,3 @@
+# Ignoruj nahrané profilové fotky, ale zachovaj priečinok v repozitári
+*
+!.gitignore

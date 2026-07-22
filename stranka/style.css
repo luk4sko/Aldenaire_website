@@ -1575,3 +1575,333 @@ body.rezervacia_page .container {
     }
 }
 /* #endregion */
+/* #region profil + moje rezervacie */
+
+/* --- Avatar v hlavičke a dropdown --- */
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.dropdown-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.dropdown-user .dropdown-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.dropdown-user i {
+    font-size: 1.6rem;
+    color: #fff;
+}
+.dropdown-user span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.profile-dropdown a i {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.14);
+    margin: 4px 0;
+}
+.dropdown-logout {
+    color: #ff8a8a !important;
+}
+.dropdown-logout:hover {
+    background: rgba(255, 80, 80, 0.15) !important;
+}
+
+/* --- Pozadie + header stacking pre nové stránky --- */
+.profil_page,
+.rezervacie_page {
+    background: url('obrazky/pozadie2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.profil_page .home-header,
+.rezervacie_page .home-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+.profil_page .header-inner,
+.rezervacie_page .header-inner {
+    margin: 10px auto;
+}
+
+/* --- Spoločné nadpisy --- */
+.profil-page h1,
+.moje-rezervacie-page h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+.profil-msg {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* --- PROFIL --- */
+.profil-page {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+}
+.profil-container {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.profil-card {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    padding: 28px;
+    color: #fff;
+}
+.profil-avatar-card {
+    flex: 1;
+    min-width: 240px;
+    text-align: center;
+}
+.profil-details-card {
+    flex: 1.4;
+    min-width: 280px;
+}
+.profil-card h2 {
+    color: #ffd700;
+    margin-bottom: 18px;
+    font-size: 1.5rem;
+}
+.profil-avatar-preview {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #424242;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+}
+.profil-avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profil-avatar-preview i {
+    font-size: 5rem;
+    color: #fff;
+}
+.profil-form {
+    display: flex;
+    flex-direction: column;
+}
+.profil-form label {
+    margin: 12px 0 6px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.profil-form input[type="text"],
+.profil-form input[type="email"],
+.profil-form input[type="password"] {
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+.profil-form input:focus {
+    border-color: #ffd700;
+}
+.profil-form .btn {
+    margin-top: 18px;
+    height: 44px;
+    background: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.file-label:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+.file-label input[type="file"] {
+    display: none;
+}
+.profil-hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 26px 0 6px;
+}
+
+/* --- MOJE REZERVÁCIE --- */
+.moje-rezervacie-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+}
+.rezervacie-actions {
+    text-align: center;
+    margin-bottom: 26px;
+}
+.rezervacie-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: #ffd700;
+    color: #000;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+.rezervacie-actions .btn:hover {
+    transform: scale(1.03);
+}
+.rezervacie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+}
+.rezervacia-card {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    padding: 22px;
+    color: #fff;
+    transition: transform 0.2s;
+}
+.rezervacia-card:hover {
+    transform: translateY(-5px);
+}
+.rezervacia-card.preslo {
+    opacity: 0.6;
+}
+.rez-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.rez-typ {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffd700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.rez-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.rez-badge.upcoming {
+    background: rgba(40, 167, 69, 0.25);
+    color: #6be585;
+    border: 1px solid rgba(40, 167, 69, 0.5);
+}
+.rez-badge.past {
+    background: rgba(150, 150, 150, 0.2);
+    color: #ccc;
+    border: 1px solid rgba(200, 200, 200, 0.3);
+}
+.rez-detaily {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+}
+.rez-detaily li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 0.98rem;
+}
+.rez-detaily li i {
+    color: #ffd700;
+    font-size: 1.1rem;
+}
+.rez-zrusit {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background: rgba(220, 53, 69, 0.85);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+}
+.rez-zrusit:hover {
+    background: #dc3545;
+    transform: scale(1.03);
+}
+
+/* Responzívne */
+@media screen and (max-width: 820px) {
+    .profil-container {
+        flex-direction: column;
+    }
+    .profil-avatar-card,
+    .profil-details-card {
+        width: 100%;
+    }
+}
+/* #endregion */

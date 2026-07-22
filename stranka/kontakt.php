@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="kontakt_page">
@@ -22,10 +22,10 @@ if (session_status() === PHP_SESSION_NONE) {
     <h1>Kontakt</h1>
 
     <div class="contact-container">
-        <!-- INFORMÁCIE O SPOLOČNOSTI -->
+        <!-- INFORMأپCIE O SPOLOؤŒNOSTI -->
         <div class="contact-info-card">
             <h2>Aldenaire Fitness Club</h2>
-            <p class="contact-intro">Máš otázku alebo sa chceš objednať na tréning? Neváhaj nás kontaktovať!</p>
+            <p class="contact-intro">Mأ،إ، otأ،zku alebo sa chceإ، objednaإ¥ na trأ©ning? Nevأ،haj nأ،s kontaktovaإ¥!</p>
 
             <ul class="contact-list">
                 <li><i class='bx bxs-map'></i> <span>Likavka 1090, 034 95 Likavka</span></li>
@@ -33,11 +33,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li><i class='bx bxs-phone'></i> <span>+421 905 436 519</span></li>
             </ul>
 
-            <h3>Otváracie hodiny</h3>
+            <h3>Otvأ،racie hodiny</h3>
             <ul class="contact-hours">
-                <li><span>Pondelok – Piatok</span><span>6:00 – 22:00</span></li>
-                <li><span>Sobota</span><span>8:00 – 20:00</span></li>
-                <li><span>Nedeľa</span><span>8:00 – 18:00</span></li>
+                <li><span>Pondelok â€“ Piatok</span><span>6:00 â€“ 22:00</span></li>
+                <li><span>Sobota</span><span>8:00 â€“ 20:00</span></li>
+                <li><span>Nedeؤ¾a</span><span>8:00 â€“ 18:00</span></li>
             </ul>
 
             <div class="contact-socials">
