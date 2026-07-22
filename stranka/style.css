@@ -370,12 +370,12 @@ body.rezervacia_page {
 
 /* Na stránke cennik.php nech header NIE JE fixed (teda scrolluje preč s obsahom) */
 .rezervacia_page .home-header {
-    position: static !important;
+    position: relative !important;   /* relative namiesto static, aby si header udržal stacking context pre dropdown */
     top: auto !important;
     left: auto !important;
     right: auto !important;
     width: 100% !important;
-    z-index: auto !important;
+    z-index: 999 !important;
 }
 
 .rezervacia_page .header-inner {
@@ -1032,12 +1032,12 @@ body.rezervacia_page .container {
 
 /* Na stránke cennik.php nech header NIE JE fixed (teda scrolluje preč s obsahom) */
 .cennik-page .home-header {
-    position: static !important;
+    position: relative !important;   /* relative namiesto static, aby si header udržal stacking context pre dropdown */
     top: auto !important;
     left: auto !important;
     right: auto !important;
     width: 100% !important;
-    z-index: auto !important;
+    z-index: 999 !important;
 }
 
 .cennik-page .header-inner {
@@ -1062,12 +1062,12 @@ body.rezervacia_page .container {
 }
 
 .treneri_page .home-header {
-    position: static !important;
+    position: relative !important;   /* relative namiesto static, aby si header udržal stacking context pre dropdown */
     top: auto !important;
     left: auto !important;
     right: auto !important;
     width: 100% !important;
-    z-index: auto !important;
+    z-index: 999 !important;
 }
 
 .treneri_page .header-inner {
