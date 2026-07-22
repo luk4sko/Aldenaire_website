@@ -150,8 +150,8 @@
     display: none;              /* skryté, JS prepne na flex */
     flex-direction: column;     /* možnosti pod sebou */
     position: absolute;
-    top: calc(100% + 40px);     /* spadne pod header pill (mimo hlavičky) */
-    right: 0;
+    top: calc(100% + 22px);     /* spadne pod header pill (mimo hlavičky) */
+    right: -25px;               /* posunuté viac doprava */
     min-width: 180px;
     background: rgba(30, 30, 30, 0.85);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -159,7 +159,7 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(20px);
     overflow: hidden;
-    z-index: 1001;
+    z-index: 99999;             /* nad všetkým ostatným */
 }
 
 .profile-dropdown a {
