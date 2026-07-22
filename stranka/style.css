@@ -147,29 +147,32 @@
 }
 
 .profile-dropdown {
-    display: none;
-    flex-direction: column;
+    display: none;              /* skryté, JS prepne na flex */
+    flex-direction: column;     /* možnosti pod sebou */
     position: absolute;
-    top: 55px;
+    top: calc(100% + 40px);     /* spadne pod header pill (mimo hlavičky) */
     right: 0;
-    min-width: 160px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 180px;
+    background: rgba(30, 30, 30, 0.85);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(20px);
     overflow: hidden;
     z-index: 1001;
 }
 
 .profile-dropdown a {
-    padding: 12px 18px;
-    color: #333;
-    font-size: 14px;
+    padding: 13px 20px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
     text-decoration: none;
     transition: background 0.2s ease;
 }
 
 .profile-dropdown a:hover {
-    background: #f0f0f0;
+    background: rgba(255, 255, 255, 0.12);
 }
 /* #endregion */
 /* #region hero*/
