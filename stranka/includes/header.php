@@ -15,8 +15,8 @@ if(session_status() === PHP_SESSION_NONE){
             <a href="home.php">Domov</a>
             <a href="treneri.php">Tréneri</a>
             <a href="cennik.php">Obchod</a>
-            <a href="#">Recenzie</a>
-            <a href="#">Kontakt</a>
+            <a href="recenzie.php">Recenzie</a>
+            <a href="kontakt.php">Kontakt</a>
         </nav>
 
         <!-- SEARCH + PROFILE -->

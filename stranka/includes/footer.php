@@ -14,7 +14,8 @@
                     <li><a href="home.php">Domov</a></li>
                     <li><a href="treneri.php">Tréneri</a></li>
                     <li><a href="cennik.php">Obchod</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="recenzie.php">Recenzie</a></li>
+                    <li><a href="kontakt.php">Kontakt</a></li>
                 </ul>
             </div>
         </div>

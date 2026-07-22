@@ -1200,3 +1200,378 @@ body.rezervacia_page .container {
 }
 
 /* #endregion */
+/* #region recenzie */
+.recenzie_page {
+    background: url('obrazky/pozadie2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* header nech si udrží stacking context pre dropdown (rovnako ako treneri/cennik) */
+.recenzie_page .home-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+
+.recenzie_page .header-inner {
+    margin: 10px auto;
+}
+
+.reviews-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+}
+
+.reviews-page h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+}
+
+/* Priemerné hodnotenie */
+.reviews-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    font-size: 1.3rem;
+}
+
+.reviews-summary .avg-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffd700;
+}
+
+.reviews-summary .avg-stars i {
+    color: #ffd700;
+    font-size: 1.5rem;
+}
+
+.reviews-summary .avg-count {
+    color: #ddd;
+}
+
+/* Formulárová karta */
+.review-form-card {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 3.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.review-form-card h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.review-form {
+    gap: 12px;
+}
+
+.review-form textarea {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    resize: vertical;
+}
+
+.review-form textarea::placeholder {
+    color: #bbb;
+}
+
+/* Interaktívny výber hviezdičiek */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-bottom: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2.2rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.15s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffd700;
+}
+
+.star-rating label:hover {
+    transform: scale(1.15);
+}
+
+.review-submit {
+    align-self: flex-start;
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.review-submit:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.review-login-note {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #f0f0f0;
+}
+
+.review-login-note a {
+    color: #ffd700;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.review-login-note a:hover {
+    text-decoration: underline;
+}
+
+/* Zoznam recenzií */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.no-reviews {
+    text-align: center;
+    color: #ddd;
+    font-size: 1.2rem;
+}
+
+.review-card {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.review-stars i {
+    color: #ffd700;
+    font-size: 1.1rem;
+}
+
+.review-text {
+    color: #f0f0f0;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.review-date {
+    font-size: 0.85rem;
+    color: #aaa;
+    align-self: flex-end;
+}
+/* #endregion */
+/* #region kontakt */
+.kontakt_page {
+    background: url('obrazky/pozadie3.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.kontakt_page .home-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+
+.kontakt_page .header-inner {
+    margin: 10px auto;
+}
+
+.contact-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+}
+
+.contact-page h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+}
+
+.contact-container {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* Karta s informáciami */
+.contact-info-card {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 3.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.contact-info-card h2 {
+    text-align: left;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.contact-info-card h3 {
+    text-align: left;
+    font-size: 1.3rem;
+    color: #ffd700;
+    margin: 25px 0 12px;
+}
+
+.contact-intro {
+    color: #f0f0f0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.contact-list {
+    list-style: none;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    color: #f0f0f0;
+}
+
+.contact-list i {
+    font-size: 1.5rem;
+    color: #ffd700;
+    min-width: 28px;
+    text-align: center;
+}
+
+.contact-hours {
+    list-style: none;
+}
+
+.contact-hours li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f0f0f0;
+}
+
+.contact-hours li:last-child {
+    border-bottom: none;
+}
+
+.contact-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.contact-socials a {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.4rem;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.contact-socials a:hover {
+    background: #ffd700;
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* Karta s mapou */
+.contact-map-card {
+    flex: 1.3;
+    min-height: 450px;
+    border: 3.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.contact-map-card iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+}
+
+/* Responzívne */
+@media screen and (max-width: 850px) {
+    .contact-container {
+        flex-direction: column;
+    }
+}
+/* #endregion */
