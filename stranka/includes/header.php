@@ -20,17 +20,16 @@ if(session_status() === PHP_SESSION_NONE){
         </nav>
 
         <!-- SEARCH + PROFILE -->
- <div class="profile-wrapper">
-    <div class="profile-icon" id="profileToggle">
-        <i class='bx bx-user'></i>
+        <div class="profile-wrapper">
+            <div class="profile-icon" id="profileToggle">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#">Moznost 1</a>
+                <a href="#">Moznost 2</a>
+                <a href="#">Moznost 3</a>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    <div class="profile-dropdown" id="profileDropdown">
-        <a href="#">Moznost 1</a>
-        <a href="#">Moznost 2</a>
-        <a href="#">Moznost 3</a>
-    </div>
-</div>
 <script src="script.js"></script>
 </header>

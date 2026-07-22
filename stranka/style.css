@@ -140,6 +140,37 @@
 .profile-icon:hover {
     transform: scale(1.05);
 }
+
+/* PROFILE DROPDOWN */
+.profile-wrapper {
+    position: relative;
+}
+
+.profile-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    min-width: 160px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.profile-dropdown a {
+    padding: 12px 18px;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.profile-dropdown a:hover {
+    background: #f0f0f0;
+}
 /* #endregion */
 /* #region hero*/
 /* ----------------- HERO SECTION ----------------- */

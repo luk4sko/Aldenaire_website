@@ -12,9 +12,9 @@
                 <h3>Rýchle odkazy</h3>
                 <ul>
                     <li><a href="home.php">Domov</a></li>
-                    <li><a href="trainers.php">Tréneri</a></li>
+                    <li><a href="treneri.php">Tréneri</a></li>
                     <li><a href="cennik.php">Obchod</a></li>
-                    <li><a href="contact.php">Kontakt</a></li>
+                    <li><a href="#">Kontakt</a></li>
                 </ul>
             </div>
         </div>

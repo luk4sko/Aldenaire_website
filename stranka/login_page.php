@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <img class="prvy" src="obrazky/checkbox1.png">
                 <img class="hover" src="obrazky/hover.png">
                 <img class="druhy" src="obrazky/checkbox.png">
-                <span class="pamataj">Remember me</class>
+                <span class="pamataj">Remember me</span>
             </label>
             <a href="#" class="zabudol"> Forgot password? </a>
         </div>
