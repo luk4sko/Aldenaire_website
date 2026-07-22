@@ -79,38 +79,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // --- PROFILOVÁ FOTKA ---
+    // Prijímame orezaný štvorcový obrázok (PNG) z prehliadača ako base64 data URL
     if ($akcia === 'fotka') {
-        if (!isset($_FILES['profilovka']) || $_FILES['profilovka']['error'] !== UPLOAD_ERR_OK) {
+        $data = $_POST['cropped_image'] ?? '';
+        $prefix = 'data:image/png;base64,';
+
+        if (strpos($data, $prefix) !== 0) {
             $chyba = "Vyber prosím obrázok.";
         } else {
-            $f = $_FILES['profilovka'];
-            $maxSize = 3 * 1024 * 1024; // 3 MB
-            $info = @getimagesize($f['tmp_name']);
-            $povolene = [
-                'image/jpeg' => 'jpg',
-                'image/png'  => 'png',
-                'image/gif'  => 'gif',
-                'image/webp' => 'webp',
-            ];
+            $raw = base64_decode(substr($data, strlen($prefix)), true);
 
-            if ($f['size'] > $maxSize) {
+            if ($raw === false) {
+                $chyba = "Neplatný obrázok.";
+            } elseif (strlen($raw) > 3 * 1024 * 1024) {
                 $chyba = "Obrázok je príliš veľký (max 3 MB).";
-            } elseif (!$info || !isset($povolene[$info['mime']])) {
-                $chyba = "Nepodporovaný formát. Použi JPG, PNG, GIF alebo WEBP.";
             } else {
-                $ext = $povolene[$info['mime']];
-                $filename = 'user_' . $user['id'] . '_' . time() . '.' . $ext;
-
-                if (move_uploaded_file($f['tmp_name'], $uploadDir . $filename)) {
-                    // Zmaž starú fotku
-                    if (!empty($user['profilovka']) && file_exists($uploadDir . $user['profilovka'])) {
-                        @unlink($uploadDir . $user['profilovka']);
-                    }
-                    $pdo->prepare("UPDATE pouzivatelia SET profilovka = ? WHERE id = ?")
-                        ->execute([$filename, $user['id']]);
-                    $odpoved = "Profilová fotka bola aktualizovaná.";
+                $info = @getimagesizefromstring($raw);
+                if (!$info || $info['mime'] !== 'image/png') {
+                    $chyba = "Neplatný obrázok.";
                 } else {
-                    $chyba = "Nepodarilo sa uložiť obrázok.";
+                    $filename = 'user_' . $user['id'] . '_' . time() . '.png';
+
+                    if (file_put_contents($uploadDir . $filename, $raw) !== false) {
+                        // Zmaž starú fotku
+                        if (!empty($user['profilovka']) && file_exists($uploadDir . $user['profilovka'])) {
+                            @unlink($uploadDir . $user['profilovka']);
+                        }
+                        $pdo->prepare("UPDATE pouzivatelia SET profilovka = ? WHERE id = ?")
+                            ->execute([$filename, $user['id']]);
+                        $odpoved = "Profilová fotka bola aktualizovaná.";
+                    } else {
+                        $chyba = "Nepodarilo sa uložiť obrázok.";
+                    }
                 }
             }
         }
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="profil_page">
@@ -155,13 +155,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
             </div>
             <h2><?php echo htmlspecialchars($user['username']); ?></h2>
-            <form action="" method="post" enctype="multipart/form-data" class="profil-form">
+            <form action="" method="post" class="profil-form" id="fotkaForm">
                 <input type="hidden" name="akcia" value="fotka">
+                <input type="hidden" name="cropped_image" id="croppedImage">
+
                 <label class="file-label">
                     <i class='bx bx-image-add'></i> Vybrať obrázok
-                    <input type="file" name="profilovka" accept="image/*" required>
+                    <input type="file" id="fileInput" accept="image/*">
                 </label>
-                <button type="submit" class="btn">Nahrať fotku</button>
+
+                <!-- Orezávač (viditeľný až po výbere obrázka) -->
+                <div class="cropper-wrap" id="cropperWrap">
+                    <div class="cropper" id="cropper">
+                        <img id="cropImg" alt="" draggable="false">
+                    </div>
+                    <label class="zoom-label">
+                        <i class='bx bx-search'></i>
+                        <input type="range" id="zoom" min="1" max="3" step="0.01" value="1">
+                    </label>
+                    <p class="cropper-hint">Potiahni obrázok a nastav priblíženie.</p>
+                </div>
+
+                <button type="submit" class="btn" id="uploadBtn">Nahrať fotku</button>
             </form>
         </div>
 
@@ -200,5 +215,108 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <?php include 'includes/footer.php'; ?>
+
+<script>
+(function () {
+    const CROP = 240;    // veľkosť orezávacieho okna (px)
+    const OUT  = 400;    // veľkosť výsledného štvorca (px)
+
+    const fileInput   = document.getElementById('fileInput');
+    const cropperWrap = document.getElementById('cropperWrap');
+    const cropper     = document.getElementById('cropper');
+    const img         = document.getElementById('cropImg');
+    const zoom        = document.getElementById('zoom');
+    const form        = document.getElementById('fotkaForm');
+    const hidden      = document.getElementById('croppedImage');
+
+    let natW = 0, natH = 0;   // pôvodné rozmery
+    let baseScale = 1;        // mierka aby obrázok pokryl okno
+    let scale = 1;            // efektívna mierka
+    let posX = 0, posY = 0;   // posun ľavého horného rohu obrázka voči oknu
+    let dragging = false, startX = 0, startY = 0;
+
+    function clamp() {
+        const w = natW * scale, h = natH * scale;
+        // obrázok musí vždy pokryť celé okno (žiadne prázdne miesta)
+        posX = Math.min(0, Math.max(CROP - w, posX));
+        posY = Math.min(0, Math.max(CROP - h, posY));
+    }
+
+    function render() {
+        img.style.width  = (natW * scale) + 'px';
+        img.style.height = (natH * scale) + 'px';
+        img.style.transform = 'translate(' + posX + 'px,' + posY + 'px)';
+    }
+
+    fileInput.addEventListener('change', function () {
+        const file = this.files && this.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Vyber prosím obrázok.'); return; }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            img.onload = function () {
+                natW = img.naturalWidth;
+                natH = img.naturalHeight;
+                baseScale = Math.max(CROP / natW, CROP / natH);
+                zoom.value = 1;
+                scale = baseScale;
+                // vycentruj
+                posX = (CROP - natW * scale) / 2;
+                posY = (CROP - natH * scale) / 2;
+                clamp();
+                render();
+                cropperWrap.classList.add('active');
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // Priblíženie – zachovaj stred okna
+    zoom.addEventListener('input', function () {
+        if (!natW) return;
+        const cx = (CROP / 2 - posX) / scale;   // bod v obrázku pod stredom okna
+        const cy = (CROP / 2 - posY) / scale;
+        scale = baseScale * parseFloat(this.value);
+        posX = CROP / 2 - cx * scale;
+        posY = CROP / 2 - cy * scale;
+        clamp();
+        render();
+    });
+
+    // Ťahanie
+    function pointerDown(x, y) { dragging = true; startX = x - posX; startY = y - posY; }
+    function pointerMove(x, y) {
+        if (!dragging) return;
+        posX = x - startX;
+        posY = y - startY;
+        clamp();
+        render();
+    }
+    function pointerUp() { dragging = false; }
+
+    cropper.addEventListener('mousedown', e => { e.preventDefault(); pointerDown(e.clientX, e.clientY); });
+    window.addEventListener('mousemove', e => pointerMove(e.clientX, e.clientY));
+    window.addEventListener('mouseup', pointerUp);
+    cropper.addEventListener('touchstart', e => { const t = e.touches[0]; pointerDown(t.clientX, t.clientY); }, { passive: true });
+    cropper.addEventListener('touchmove', e => { const t = e.touches[0]; pointerMove(t.clientX, t.clientY); e.preventDefault(); }, { passive: false });
+    window.addEventListener('touchend', pointerUp);
+
+    // Odoslanie – vykresli viditeľnú časť do canvasu a pošli ako base64 PNG
+    form.addEventListener('submit', function (e) {
+        if (!natW) { e.preventDefault(); alert('Vyber prosím obrázok.'); return; }
+        const srcX = -posX / scale;
+        const srcY = -posY / scale;
+        const srcSize = CROP / scale;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = OUT; canvas.height = OUT;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, OUT, OUT);
+        hidden.value = canvas.toDataURL('image/png');
+    });
+})();
+</script>
 </body>
 </html>

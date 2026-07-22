@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 require 'db_config.php';
 
@@ -9,16 +9,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $password_repeat = $_POST['password_repeat'];
 
     if($password !== $password_repeat){
-        $error = "Heslأ، sa nezhodujأ؛!";
+        $error = "Heslá sa nezhodujú!";
     } else {
         // hash hesla
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // kontrola ؤچi uإ¾ existuje username
+        // kontrola či už existuje username
         $check = $pdo->prepare("SELECT * FROM pouzivatelia WHERE username = ?");
         $check->execute([$username]);
         if($check->rowCount() > 0){
-            $error = "Pouإ¾أ­vateؤ¾ s tأ½mto menom uإ¾ existuje!";
+            $error = "Používateľ s týmto menom už existuje!";
         } else {
             $insert = $pdo->prepare("INSERT INTO pouzivatelia (username, email, password) VALUES (?, ?, ?)");
             $insert->execute([$username, $email, $password_hash]);
@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="register-page">

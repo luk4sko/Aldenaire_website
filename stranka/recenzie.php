@@ -1,29 +1,29 @@
-﻿<?php
+<?php
 session_start();
 require 'db_config.php';
 
-// Spracovanie odoslanej recenzie (len ak je pouإ¾أ­vateؤ¾ prihlأ،senأ½)
+// Spracovanie odoslanej recenzie (len ak je používateľ prihlásený)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['username'])) {
-        $chyba = "Pre pridanie recenzie musأ­إ، byإ¥ prihlأ،senأ½!";
+        $chyba = "Pre pridanie recenzie musíš byť prihlásený!";
     } else {
         $recenzia = trim($_POST['recenzia'] ?? '');
         $hviezdicky = (int)($_POST['hviezdicky'] ?? 0);
 
         if ($recenzia === '' || $hviezdicky < 1 || $hviezdicky > 5) {
-            $chyba = "Prosأ­m vyber poؤچet hviezdiؤچiek a napأ­إ، text recenzie.";
+            $chyba = "Prosím vyber počet hviezdičiek a napíš text recenzie.";
         } else {
             $stmt = $pdo->prepare("INSERT INTO reviews (meno, recenzia, hviezdicky) VALUES (?, ?, ?)");
             $stmt->execute([$_SESSION['username'], $recenzia, $hviezdicky]);
-            $odpoved = "ؤژakujeme za tvoju recenziu!";
+            $odpoved = "Ďakujeme za tvoju recenziu!";
         }
     }
 }
 
-// Naؤچأ­tanie vإ،etkأ½ch recenziأ­ (najnovإ،ie hore)
+// Načítanie všetkých recenzií (najnovšie hore)
 $reviews = $pdo->query("SELECT * FROM reviews ORDER BY datum DESC")->fetchAll(PDO::FETCH_ASSOC);
 
-// Priemernأ© hodnotenie
+// Priemerné hodnotenie
 $pocet = count($reviews);
 $priemer = 0;
 if ($pocet > 0) {
@@ -37,7 +37,7 @@ if ($pocet > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recenzie</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="recenzie_page">
@@ -57,14 +57,14 @@ if ($pocet > 0) {
                     <i class='bx <?php echo $i <= round($priemer) ? "bxs-star" : "bx-star"; ?>'></i>
                 <?php endfor; ?>
             </span>
-            <span class="avg-count">(<?php echo $pocet; ?> recenziأ­)</span>
+            <span class="avg-count">(<?php echo $pocet; ?> recenzií)</span>
         </div>
     <?php endif; ?>
 
-    <!-- FORMULأپR NA PRIDANIE RECENZIE -->
+    <!-- FORMULÁR NA PRIDANIE RECENZIE -->
     <div class="review-form-card">
         <?php if (isset($_SESSION['username'])): ?>
-            <h2>Napأ­إ، svoju recenziu</h2>
+            <h2>Napíš svoju recenziu</h2>
 
             <?php if (isset($odpoved)) echo "<p class='odpoved'>$odpoved</p>"; ?>
             <?php if (isset($chyba)) echo "<p class='rezervovane'>$chyba</p>"; ?>
@@ -80,21 +80,21 @@ if ($pocet > 0) {
                 </div>
 
                 <label for="recenzia">Tvoja recenzia:</label>
-                <textarea name="recenzia" id="recenzia" rows="4" placeholder="Napأ­إ، svoju skأ؛senosإ¥..." required></textarea>
+                <textarea name="recenzia" id="recenzia" rows="4" placeholder="Napíš svoju skúsenosť..." required></textarea>
 
-                <button type="submit" class="btn review-submit">Odoslaإ¥ recenziu</button>
+                <button type="submit" class="btn review-submit">Odoslať recenziu</button>
             </form>
         <?php else: ?>
             <p class="review-login-note">
-                Pre pridanie recenzie sa musأ­إ، <a href="login_page.php">prihlأ،siإ¥</a>.
+                Pre pridanie recenzie sa musíš <a href="login_page.php">prihlásiť</a>.
             </p>
         <?php endif; ?>
     </div>
 
-    <!-- ZOZNAM RECENZIأچ -->
+    <!-- ZOZNAM RECENZIÍ -->
     <div class="reviews-grid">
         <?php if ($pocet === 0): ?>
-            <p class="no-reviews">Zatiaؤ¾ tu nie sأ؛ إ¾iadne recenzie. Buؤڈ prvأ½!</p>
+            <p class="no-reviews">Zatiaľ tu nie sú žiadne recenzie. Buď prvý!</p>
         <?php else: ?>
             <?php foreach ($reviews as $r): ?>
                 <div class="review-card">

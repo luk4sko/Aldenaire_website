@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 require 'db_config.php';
 
@@ -15,10 +15,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             header("Location: rezervacia.php");
             exit();
         } else {
-            $error = "Nesprأ،vne أ؛daje!";
+            $error = "Nesprávne údaje!";
         }
     } else {
-        $error = "Pouإ¾أ­vateؤ¾ neexistuje!";
+        $error = "Používateľ neexistuje!";
     }
 }
 ?>
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title>
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="login-page">

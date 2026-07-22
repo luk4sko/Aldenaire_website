@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trأ©neri</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <title>Tréneri</title>
+    <link rel="stylesheet" href="style.css?v=8">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="treneri_page">
@@ -15,7 +15,7 @@
 
 <main class="trainers-page">
 
-    <!-- Trأ©ner Marek -->
+    <!-- Tréner Marek -->
     <div class="trainer-card">
         <section class="trainer">
             <div class="trainer-image">
@@ -23,16 +23,16 @@
             </div>
             <div class="trainer-info">
                 <h2>Marek</h2>
-                <p>Marek je silovأ½ trأ©ner s viac ako 10-roؤچnou praxou. Pomأ´إ¾e ti vybudovaإ¥ silu a svalovأ؛ hmotu a vإ¾dy dbأ، na sprأ،vnu techniku cviؤچenia.</p>
-                <p><span class="specialization">إ pecializأ،cie:</span> Silovأ½ trأ©ning, budovanie svalovej hmoty, individuأ،lne trأ©ningovأ© plأ،ny.</p>
-                <p>Marek je znأ،my svojim profesionأ،lnym prأ­stupom a motivuje klientov dosiahnuإ¥ ich ciele efektأ­vne a bezpeؤچne.</p>
-                <p class="price">Cena trأ©ningu: 25â‚¬ / 2 hodiny</p>
+                <p>Marek je silový tréner s viac ako 10-ročnou praxou. Pomôže ti vybudovať silu a svalovú hmotu a vždy dbá na správnu techniku cvičenia.</p>
+                <p><span class="specialization">Špecializácie:</span> Silový tréning, budovanie svalovej hmoty, individuálne tréningové plány.</p>
+                <p>Marek je známy svojim profesionálnym prístupom a motivuje klientov dosiahnuť ich ciele efektívne a bezpečne.</p>
+                <p class="price">Cena tréningu: 25€ / 2 hodiny</p>
                 <a href="rezervacia.php" class="btn">Rezervuj</a>
             </div>
         </section>
     </div>
 
-    <!-- Trأ©ner Peto -->
+    <!-- Tréner Peto -->
     <div class="trainer-card reverse">
         <section class="trainer">
             <div class="trainer-image">
@@ -40,16 +40,16 @@
             </div>
             <div class="trainer-info">
                 <h2>Peto</h2>
-                <p>Peto je odbornأ­k na kardio a funkؤچnأ½ trأ©ning s viac ako 8-roؤچnou praxou. Motivuje kaإ¾dأ©ho klienta a prispأ´sobuje trأ©ning podؤ¾a jeho moإ¾nostأ­.</p>
-                <p><span class="specialization">إ pecializأ،cie:</span> Kardio, funkؤچnأ½ trأ©ning, zlepإ،enie kondأ­cie a vytrvalosti.</p>
-                <p>Peto sa starأ، aj o motivأ،ciu a psychologickأ؛ podporu, aby trأ©ningy boli zأ،bavnأ© a efektأ­vne.</p>
-                <p class="price">Cena trأ©ningu: 25â‚¬ / 2 hodiny</p>
+                <p>Peto je odborník na kardio a funkčný tréning s viac ako 8-ročnou praxou. Motivuje každého klienta a prispôsobuje tréning podľa jeho možností.</p>
+                <p><span class="specialization">Špecializácie:</span> Kardio, funkčný tréning, zlepšenie kondície a vytrvalosti.</p>
+                <p>Peto sa stará aj o motiváciu a psychologickú podporu, aby tréningy boli zábavné a efektívne.</p>
+                <p class="price">Cena tréningu: 25€ / 2 hodiny</p>
                 <a href="rezervacia.php" class="btn">Rezervuj</a>
             </div>
         </section>
     </div>
 
-    <!-- Trأ©ner Robko -->
+    <!-- Tréner Robko -->
     <div class="trainer-card">
         <section class="trainer">
             <div class="trainer-image">
@@ -57,10 +57,10 @@
             </div>
             <div class="trainer-info">
                 <h2>Marko</h2>
-                <p>Marko je expert na flexibilitu a regenerأ،ciu. Pomأ،ha klientom predchأ،dzaإ¥ zraneniam a zlepإ،iإ¥ pohyblivosإ¥.</p>
-                <p><span class="specialization">إ pecializأ،cie:</span> Flexibilita, regenerأ،cia, prevencia zranenأ­, funkؤچnأ½ trأ©ning.</p>
-                <p>Marko sa zameriava na individuأ،lny prأ­stup a dlhodobأ© zlepإ،enie zdravia a kondأ­cie klientov.</p>
-                <p class="price">Cena trأ©ningu: 35â‚¬ / 2 hodiny</p>
+                <p>Marko je expert na flexibilitu a regeneráciu. Pomáha klientom predchádzať zraneniam a zlepšiť pohyblivosť.</p>
+                <p><span class="specialization">Špecializácie:</span> Flexibilita, regenerácia, prevencia zranení, funkčný tréning.</p>
+                <p>Marko sa zameriava na individuálny prístup a dlhodobé zlepšenie zdravia a kondície klientov.</p>
+                <p class="price">Cena tréningu: 35€ / 2 hodiny</p>
                 <a href="rezervacia.php" class="btn">Rezervuj</a>
             </div>
         </section>
