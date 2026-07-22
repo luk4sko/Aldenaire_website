@@ -1,0 +1,1168 @@
+/* ----------------- GLOBAL ----------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+/* ----------------- HOME PAGE -----------------*/
+
+.home_page {
+    background-image: url("obrazky/pozadie_home.jpg");
+    background-size: contain;   /* celý obrázok viditeľný */
+    background-repeat: no-repeat;
+    background-position: top center; /* zarovnanie hore */
+}
+
+/* #region header */
+/* ----------------- HOME PAGE HEADER ----------------- */
+
+.home-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0; /* pridá trochu miesta okolo .header-inner */
+    position: fixed;   /* nalepený hore */
+    z-index: 1000;     /* aby bol nad všetkými sekciami */ 
+    overflow: visible;
+}
+
+
+.header-inner {
+    width: 100%;
+    max-width: 1450px;
+    background: transparent;
+    padding: 10px 25px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3.5px solid rgba(255, 255, 255, 0.2);   
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    overflow: visible;
+}
+
+/* LOGO */
+.home-header img {
+    height: 65px;     
+    width: auto;
+    display: block;
+}
+
+
+/* NAVIGATION */
+.home-nav {
+    display: flex;
+    gap: 35px;
+    margin-left: 10%;
+}
+
+.home-nav a {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+}
+
+.home-nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -3px;
+    background-color: #cbcbcb;
+    transition: width 0.3s;
+    color: #9f9f9f;
+}
+
+.home-nav a:hover::after {
+    width: 100%;
+}
+
+.home-nav a:hover {
+    color: #9f9f9f;
+}
+
+/* RIGHT SIDE (search + profile) */
+.home-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* SEARCH BOX */
+.search-box {
+    background: #fff;
+    border-radius: 50px;
+    padding: 6px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    appearance: none;
+}
+
+.search-box input {
+    border: none !important;
+    outline: none !important;
+    background: transparent;
+    font-size: 15px;
+    color: #000 !important;   /* makes typed text black */
+}
+
+.search-box input:focus {
+    border: none !important;
+    outline: none !important;
+}
+.search-box i {
+    color: #444;
+}
+
+/* PROFILE ICON CIRCLE */
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    background: #424242;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.05);
+}
+/* #endregion */
+/* #region hero*/
+/* ----------------- HERO SECTION ----------------- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    color: #fff;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); /* filter pre čitateľnosť textu */
+    z-index: 1;
+}
+
+.hero-left, .hero-right {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-left {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column; /* stack heading, text, button vertically */
+    align-items: center;    /* center content horizontally */
+    text-align: center;     /* optional, center the text too */
+}
+
+.hero-left h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-left p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #4C8CFF;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+    align-items: center;
+}
+
+.hero-btn:hover {
+    background: #3577e6;
+    transform: scale(1.05);
+}
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-right img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 40px 5%;
+    }
+    .hero-left, .hero-right {
+        max-width: 100%;
+    }
+    .hero-left h1 {
+        font-size: 2rem;
+    }
+    .hero-left p {
+        font-size: 1rem;
+    }
+    .hero-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    .hero-right img {
+        margin-bottom: 20px;
+    }
+}
+
+
+.coaches {
+    padding: 80px 10%;
+    text-align: center;
+    color: #fff;
+    background: #111; /* tmavé pozadie sekcie */
+}
+
+.coaches h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.coaches-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.coach-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 250px;
+    transition: transform 0.3s;
+}
+
+.coach-card:hover {
+    transform: translateY(-10px);
+}
+
+.coach-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.coach-card p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.coach-card img {
+    width: 100%;        /* obrázok vyplní šírku karty */
+    height: 250px;      /* jednotná výška pre všetky trénerov */
+    object-fit: cover;  /* zachová proporcie, orezá iba okraje */
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* #endregion */
+/* #region rezervacia */
+/* ------------------- BODY --------------------*/
+body { 
+    min-height: 100vh;
+    background: url('obrazky/pozadie1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+/* ----------------- REZERVACIA PAGE ----------------- */
+body.rezervacia_page {
+    display: flex;
+    flex-direction: column; /* usporiada obsah zhora nadol */
+    justify-content: flex-start; 
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    background: transparent;
+    border: 3.5px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 20px 45px;
+    font-size: 16px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.fixed-header header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+/* Na stránke cennik.php nech header NIE JE fixed (teda scrolluje preč s obsahom) */
+.rezervacia_page .home-header {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
+}
+
+.rezervacia_page .header-inner {
+    margin: 10px auto;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+input[type="submit"] {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #fff;
+    color-scheme: dark;
+}
+
+select {
+    color: #fff; /* biely text */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select option {
+    background-color: rgb(31, 31, 31);
+    color: #fff; 
+}
+
+.arrow{
+    appearance: none; /* Disable the default arrow */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    width: 100%;
+    padding: 10px 35px 10px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-image: url("obrazky/sipka.png");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 20px;
+    cursor: pointer;
+    color-scheme: light;
+}
+
+input[type="submit"] {
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background: #218838;
+    transform: scale(1.025);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+.odpoved {
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.rezervovane {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+/* #endregion */
+/* #region Login/Register*/
+/* ----------------- LOGIN & REGISTER PAGES ----------------- */
+body.login-page,
+body.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    padding: 40px;
+    color: #fff;
+}
+
+body.login-page .wrapper {
+    padding-top: 70px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wrapper .input-box {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.register-page .wrapper .input-box {
+    margin: 8px 0 !important;
+}
+
+.input-box input{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 45px 0 20px;
+}
+
+.input-box input::placeholder{
+    color: #fff;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn:hover{
+    transform: scale(1.025);
+}
+
+.wrapper .remember-forget,
+.wrapper .login-link,
+.wrapper .register-link {
+    font-size: 14.5px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-link {
+    padding-left: 14.5%;
+}
+
+.login-link {
+    padding-left: 12.5%;
+}
+
+.remember-forget label input {
+    accent-color: #fff;
+    margin-right: 5px;
+}
+
+.suhlasim {
+    position: relative;
+    top: -5px;
+    font-weight: normal;
+}
+
+.remember-forget {
+	font-size: 24px;
+	cursor: pointer;
+    caret-color: transparent;
+	display: block;
+}
+
+.remember-forget input {
+  display: none;
+}
+
+.prvy {
+    display: none;
+    width: 20px;
+    height: auto;
+}
+
+.druhy {
+    display: none;
+    width: 20px;
+    height: auto;
+}
+
+.hover {
+    width: 20px;
+    height: auto;
+}
+
+.remember-forget:hover input:not(:checked) ~ .hover {
+    display: inline;
+    transform: scale(1.05);
+}
+
+.remember-forget:hover input:not(:checked) ~ .prvy {
+    display: none;
+}
+
+.remember-forget:hover input:not(:checked) ~ .druhy {
+    display: none;
+}
+
+.remember-forget input:checked ~ .prvy {
+    display: inline;
+}
+
+/* If checked, hide the unchecked image */
+.remember-forget input:checked ~ .druhy {
+    display: none;
+}
+
+.remember-forget input:checked ~ .hover {
+    display: none;
+}
+
+.pamataj {
+    position: relative;
+    top: -4px;
+    font-weight: normal;
+}
+
+.zabudol {
+    position: relative;
+    top: 3.5px;
+}
+
+.pravidla:hover, .zabudol:hover, .registerr:hover {
+    text-decoration: underline;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* ----------------- DVOJSTĹPCOVÝ LAYOUT PRE REZERVACIA PAGE ----------------- */
+body.rezervacia_page .container {
+    display: flex;
+    gap: 20px; /* medzera medzi ľavým a pravým stĺpcom */
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+    background: transparent; /* zachováme pôvodný efekt */
+    border: none; /* nech sa nezorazí so starým borderom */
+}
+
+.left-column, .right-column {
+    background: rgba(0,0,0,0.4); /* jemný priehľadný box */
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+}
+
+.left-column {
+    flex: 1;
+    max-width: 350px; /* šírka formuláru */
+}
+
+.right-column {
+    flex: 2; /* väčší stĺpec pre tabuľku */
+    overflow-x: auto; /* scroll pre široké tabuľky */
+}
+
+.left-column form,
+.right-column table {
+    margin-top: 0;
+}
+/* #endregion */
+/* #region Logout */
+.logout-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-decoration: none;
+    padding: 8px 12px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    transform: scale(1.03)
+}
+/* #endregion */
+/* #region Extras */
+/* Doplnkové služby */
+.trainings {
+    padding: 80px 10%;
+    text-align: center;
+    background: url('obrazky/pozadie2.jpg') no-repeat center/cover;
+    position: relative;
+    color: #fff;
+}
+
+.trainings h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.trainings .extras-cards {
+    margin-top: 0;
+}
+
+.extras {
+    padding: 80px 10%;
+    text-align: center;
+    color: #fff;
+}
+
+.extras::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); /* tmavý overlay */
+    z-index: 1;
+}
+
+.extras > * {
+    position: relative;
+    z-index: 2;
+}
+
+.extras h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.extras-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.extra-card { 
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 250px;
+    transition: transform 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.extra-card:hover {
+    transform: translateY(-10px);
+}
+
+.extra-card img {
+    width: 180px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.extra-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+
+.extra-card p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.extra-card .price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #4C8CFF;
+}
+
+.extra-card .btn.add-to-cart {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 50px;
+    background: #4C8CFF;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.extra-card .btn.add-to-cart:hover {
+    background: #3577e6;
+    transform: scale(1.05);
+}
+/* #endregion */
+/* #region Footer */
+
+
+.site-footer {
+    background-color: #111;
+    color: #fff;
+    padding: 40px 20px 20px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-block {
+    flex: 1 1 250px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333; /* jemná čiara pod hlavným blokom */
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.footer-container h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #f4f4f4;
+    border-bottom: 1px solid #333; /* jemná čiara pod názvom sekcie */
+    padding-bottom: 5px;
+}
+
+.footer-container p, 
+.footer-container li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #3b82f6; /* modrá farba */
+}
+
+.footer-contact .social-icons {
+    margin-top: 10px;
+}
+
+.footer-contact .social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-contact .social-icons a:hover {
+    color: #3b82f6;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-contact .social-icons {
+        justify-content: center;
+    }
+}
+/* #endregion */
+/* #region cennik*/
+/* CENNÍK */
+.cennik-page h1 {
+    text-align: center;
+    font-size: 32px;
+    margin: 40px 0 20px;
+    color: #fff;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.pricing-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pricing-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.pricing-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.pricing-card .status {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.pricing-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.pricing-card .btn.add-to-cart {
+    background-color: #4C8CFF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pricing-card .btn.add-to-cart:hover {
+    background-color: #3b82f6   ;
+}
+
+/* Vypredané produkty */
+.pricing-card.sold-out {
+    opacity: 0.92;   
+}
+
+.pricing-card.sold-out .price {
+    text-decoration: line-through;
+    color: #888; /*farba ceny*/
+}
+
+.pricing-card.sold-out .btn.add-to-cart {
+    display: none;
+}
+
+/* Hover efekt na karty */
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* Fixnutý header len na cenník */
+.fixed-header header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+/* Na stránke cennik.php nech header NIE JE fixed (teda scrolluje preč s obsahom) */
+.cennik-page .home-header {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
+}
+
+.cennik-page .header-inner {
+    margin: 20px auto;
+}
+
+
+/* #endregion */
+/* #region treneri*/
+/* Fixovaný header */
+.fixed-header header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.treneri_page {
+    background: url('obrazky/pozadie1.jpg') no-repeat center center fixed; 
+    background-size: cover; /* aby vyplnil celú obrazovku */
+}
+
+.treneri_page .home-header {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
+}
+
+.treneri_page .header-inner {
+    margin: 10px auto;
+}
+
+/* Hlavný obsah pod headerom */
+.trainers-page {
+    padding: 20px;
+}
+
+/* Sekcia trénera */
+.trainer {
+    display: flex;
+    align-items: stretch;
+    gap: 40px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Obrázok trénera */
+.trainer-image img {
+    width: 400px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.trainer-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Informácie o trénerovi */
+.trainer-info {
+    flex: 1;
+}
+
+/* Meno trénera */
+.trainer-info h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Arial Black', sans-serif;
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Celkový text v card */
+.trainer-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+/* Zvýraznenie špecializácií */
+.trainer-info p strong,
+.trainer-info p span.specialization {
+    font-weight: 700;
+    color: #ffd700;
+}
+
+/* Cena tréningu */
+.trainer-info .price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffdd57;
+    margin-top: 15px;
+}
+
+/* Tlačidlo rezervácie */
+.trainer-info .btn {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007bff; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.trainer-info .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Reverzné rozloženie pre druhého trénera */
+.trainer.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Trainer card s blur pozadím */
+.trainer-card {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Reverzné rozloženie pre druhého trénera */
+.trainer-card.reverse .trainer {
+    flex-direction: row-reverse;
+}
+
+/* Responzívne */
+@media screen and (max-width: 900px) {
+    .trainer-card .trainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .trainer-card .trainer-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .trainer-card .trainer-info {
+        text-align: center;
+    }
+}
+
+/* #endregion */
