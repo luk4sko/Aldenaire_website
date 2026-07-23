@@ -1,4 +1,12 @@
 <?php
+/*
+ * includes/header.php – spoločná hlavička pre všetky stránky.
+ * Obsahuje logo, hlavné menu a profilové menu vpravo.
+ * Profilové menu sa mení podľa toho, či je používateľ prihlásený:
+ *   - prihlásený  -> Profil, Moje rezervácie, Odhlásiť sa + jeho fotka,
+ *   - neprihlásený -> Prihlásiť sa, Registrovať sa.
+ * Vkladá sa do stránok cez:  include 'includes/header.php';
+ */
 if(session_status() === PHP_SESSION_NONE){
     session_start();
 }

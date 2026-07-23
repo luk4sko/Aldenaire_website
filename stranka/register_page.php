@@ -1,28 +1,35 @@
 <?php
+/*
+ * register_page.php – registrácia nového používateľa.
+ * Skontroluje, či sa heslá zhodujú a či meno ešte nie je obsadené,
+ * potom vytvorí nový účet v databáze (heslo uloží zašifrované).
+ */
 session_start();
 require 'db_config.php';
 
+// Kód sa vykoná len po odoslaní registračného formulára (POST)
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password_repeat = $_POST['password_repeat'];
+    $password_repeat = $_POST['password_repeat'];   // heslo napísané druhýkrát pre kontrolu
 
     if($password !== $password_repeat){
         $error = "Heslá sa nezhodujú!";
     } else {
-        // hash hesla
+        // Heslo NIKDY neukladáme v čitateľnej podobe – zašifrujeme ho (hash).
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // kontrola či už existuje username
+        // Skontrolujeme, či meno už niekto nemá.
         $check = $pdo->prepare("SELECT * FROM pouzivatelia WHERE username = ?");
         $check->execute([$username]);
         if($check->rowCount() > 0){
             $error = "Používateľ s týmto menom už existuje!";
         } else {
+            // Vložíme nového používateľa do tabuľky "pouzivatelia".
             $insert = $pdo->prepare("INSERT INTO pouzivatelia (username, email, password) VALUES (?, ?, ?)");
             $insert->execute([$username, $email, $password_hash]);
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $username;      // rovno ho aj prihlásime
             header("Location: rezervacia.php");
             exit();
         }
@@ -36,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="register-page">

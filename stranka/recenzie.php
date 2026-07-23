@@ -1,4 +1,9 @@
 <?php
+/*
+ * recenzie.php – recenzie (hodnotenia).
+ * Ktokoľvek si môže prečítať recenzie. Pridať recenziu môže len prihlásený
+ * používateľ (hviezdičky 1–5 + text). Hore sa počíta priemerné hodnotenie.
+ */
 session_start();
 require 'db_config.php';
 
@@ -37,7 +42,7 @@ if ($pocet > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recenzie</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="recenzie_page">

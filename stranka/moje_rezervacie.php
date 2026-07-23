@@ -1,6 +1,13 @@
 <?php
+/*
+ * moje_rezervacie.php – prehľad vlastných rezervácií používateľa.
+ * Zobrazuje len tréningy prihláseného používateľa (podľa mena).
+ * Zrušiť sa dá len tréning, ktorý je viac ako 24 hodín vopred.
+ */
 session_start();
 date_default_timezone_set('Europe/Bratislava');
+
+// Len pre prihlásených.
 if (!isset($_SESSION['username'])) {
     header("Location: login_page.php");
     exit();
@@ -45,7 +52,7 @@ $now = time();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moje rezervácie</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="rezervacie_page">

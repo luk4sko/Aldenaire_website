@@ -1,3 +1,4 @@
+<?php /* includes/footer.php – spoločná päta stránky (logo, rýchle odkazy, kontakt, sociálne siete). Vkladá sa cez include. */ ?>
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-block">

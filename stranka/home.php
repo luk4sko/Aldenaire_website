@@ -1,20 +1,30 @@
 <?php
-require 'db_config.php';
+/*
+ * home.php – Úvodná (domovská) stránka webu Aldenaire Fitness Club.
+ * Je to statická stránka (nepracuje s databázou) – obsahuje:
+ *   1) hero sekciu s hlavným nadpisom a tlačidlom na rezerváciu,
+ *   2) krátke predstavenie trénerov,
+ *   3) ukážku doplnkových produktov.
+ * Spoločnú hlavičku a pätu načítava cez include zo súborov v priečinku "includes".
+ */
 ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <title>Domov – Aldenaire</title>
+    <!-- ?v=10 = "verzia" súboru. Po zmene štýlov číslo zvýšime, aby prehliadač načítal nový CSS. -->
+    <link rel="stylesheet" href="style.css?v=11">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="home_page">
+
+    <!-- Spoločná hlavička (logo, menu, profilové menu) -->
     <?php include 'includes/header.php'; ?>
+
 <main>
+    <!-- HERO – hlavný "banner" navrchu stránky -->
     <section class="hero">
         <div class="hero-left">
             <h1>Dosiahni svoju najlepšiu formu!</h1>
@@ -26,57 +36,57 @@ require 'db_config.php';
         </div>
     </section>
 
-
+    <!-- KRÁTKE PREDSTAVENIE TRÉNEROV -->
     <section class="coaches">
-    <h2>Naši tréneri</h2>
-    <div class="coaches-grid">
-        <div class="coach-card">
-            <img src="obrazky/marek.png" alt="Marek">
-            <h3>Marek</h3>
-            <p>Silový tréner, ktorý ti pomôže vybudovať silu a svalovú hmotu.</p>
+        <h2>Naši tréneri</h2>
+        <div class="coaches-grid">
+            <div class="coach-card">
+                <img src="obrazky/marek.png" alt="Marek">
+                <h3>Marek</h3>
+                <p>Silový tréner, ktorý ti pomôže vybudovať silu a svalovú hmotu.</p>
+            </div>
+            <div class="coach-card">
+                <img src="obrazky/peto.png" alt="Peto">
+                <h3>Peto</h3>
+                <p>Kardio a funkčný tréning sú jeho špecialitou. Motivuje každého klienta.</p>
+            </div>
+            <div class="coach-card">
+                <img src="obrazky/robko.png" alt="Marko">
+                <h3>Marko</h3>
+                <p>Expert na flexibilitu a regeneráciu. Pomôže ti zlepšiť pohyblivosť a predchádzať zraneniam.</p>
+            </div>
         </div>
-        <div class="coach-card">
-            <img src="obrazky/peto.png" alt="Peto">
-            <h3>Peto</h3>
-            <p>Kardio a funkčný tréning sú jeho špecialitou. Motivuje každého klienta.</p>
-        </div>
-        <div class="coach-card">
-            <img src="obrazky/robko.png" alt="Robko">
-            <h3>Marko</h3>
-            <p>Odborník na rast svalov. S ním budeš mať najlepší progress a táku pumpu, že ti cicky vybuchnú</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="trainings">
-    <!-- DOPLNKY -->
-    <div class="extras-cards">
-        <h2>Doplnkové produkty</h2>
-        <div class="extras-grid">
-            <div class="extra-card">
-                <img src="obrazky/chocolate.png" alt="Protein 1">
-                <h3>Protein Chocolate</h3>
-                <p class="price">25€</p>
-                <a href="#" class="btn add-to-cart">Pridať do košíka</a>
-            </div>
-            <div class="extra-card">
-                <img src="obrazky/vanilla.png" alt="Protein 2">
-                <h3>Protein Vanilla</h3>
-                <p class="price">28€</p>
-                <a href="#" class="btn add-to-cart">Pridať do košíka</a>
-            </div>
-            <div class="extra-card">
-                <img src="obrazky/strawberry.png" alt="Protein 3">
-                <h3>Protein Strawberry</h3>
-                <p class="price">30€</p>
-                <a href="#" class="btn add-to-cart">Pridať do košíka</a>
+    <!-- UKÁŽKA DOPLNKOVÝCH PRODUKTOV -->
+    <section class="trainings">
+        <div class="extras-cards">
+            <h2>Doplnkové produkty</h2>
+            <div class="extras-grid">
+                <div class="extra-card">
+                    <img src="obrazky/chocolate.png" alt="Protein Chocolate">
+                    <h3>Protein Chocolate</h3>
+                    <p class="price">25€</p>
+                    <a href="#" class="btn add-to-cart">Pridať do košíka</a>
+                </div>
+                <div class="extra-card">
+                    <img src="obrazky/vanilla.png" alt="Protein Vanilla">
+                    <h3>Protein Vanilla</h3>
+                    <p class="price">28€</p>
+                    <a href="#" class="btn add-to-cart">Pridať do košíka</a>
+                </div>
+                <div class="extra-card">
+                    <img src="obrazky/strawberry.png" alt="Protein Strawberry">
+                    <h3>Protein Strawberry</h3>
+                    <p class="price">30€</p>
+                    <a href="#" class="btn add-to-cart">Pridať do košíka</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-</main>    
-<footer>
-<?php include 'includes/footer.php'; ?>
-</footer>
+    </section>
+</main>
+
+    <!-- Spoločná päta stránky -->
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

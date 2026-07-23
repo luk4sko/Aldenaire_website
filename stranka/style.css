@@ -1,4 +1,24 @@
-/* ----------------- GLOBAL ----------------- */
+/* ===================================================================
+   FARBY WEBU – všetky hlavné farby na jednom mieste.
+   Chceš zmeniť farbu celého webu? Stačí zmeniť hodnotu tu jeden raz.
+   V štýloch sa potom používajú takto:   color: var(--zlata);
+   =================================================================== */
+:root {
+    --zlata: #ffd700;               /* hlavná (značková) zlatá farba */
+    --zlata-svetla: #ffdd57;        /* svetlejšia zlatá – pri prejdení myšou (hover) */
+
+    --tmava: #111111;               /* tmavé pozadie (napr. footer) */
+    --karta: rgba(0, 0, 0, 0.5);    /* priehľadné tmavé pozadie kariet */
+    --ramik: rgba(255, 255, 255, 0.18); /* svetlý okraj kariet */
+
+    --text-biely: #ffffff;          /* biely nadpis / text */
+    --text-svetly: #eaeaea;         /* jemne sivý text v odsekoch */
+
+    --zelena: #28a745;              /* zelená – úspešné hlášky */
+    --cervena: #dc3545;             /* červená – chyby a zrušenie */
+}
+
+/* ----------------- GLOBAL (platí pre celú stránku) ----------------- */
 * {
     margin: 0;
     padding: 0;
@@ -86,41 +106,6 @@
 
 .home-nav a:hover {
     color: #9f9f9f;
-}
-
-/* RIGHT SIDE (search + profile) */
-.home-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* SEARCH BOX */
-.search-box {
-    background: #fff;
-    border-radius: 50px;
-    padding: 6px 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    appearance: none;
-}
-
-.search-box input {
-    border: none !important;
-    outline: none !important;
-    background: transparent;
-    font-size: 15px;
-    color: #000 !important;   /* makes typed text black */
-}
-
-.search-box input:focus {
-    border: none !important;
-    outline: none !important;
-}
-.search-box i {
-    color: #444;
 }
 
 /* PROFILE ICON CIRCLE */
@@ -227,8 +212,8 @@
     display: inline-block;
     padding: 15px 40px;
     font-size: 1.2rem;
-    color: #fff;
-    background: #4C8CFF;
+    color: #000;
+    background: var(--zlata);
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
@@ -237,7 +222,7 @@
 }
 
 .hero-btn:hover {
-    background: #3577e6;
+    background: var(--zlata-svetla);
     transform: scale(1.05);
 }
 
@@ -285,7 +270,7 @@
     padding: 80px 10%;
     text-align: center;
     color: #fff;
-    background: #111; /* tmavé pozadie sekcie */
+    background: var(--tmava); /* tmavé pozadie sekcie */
 }
 
 .coaches h2 {
@@ -442,7 +427,7 @@ select option {
 }
 
 input[type="submit"] {
-    background: #28a745;
+    background: var(--zelena);
     color: white;
     border: none;
     cursor: pointer;
@@ -474,7 +459,7 @@ th, td {
 
 .odpoved {
     text-align: center;
-    color: #28a745;
+    color: var(--zelena);
     font-weight: bold;
     padding-bottom: 10px;
 }
@@ -811,15 +796,15 @@ body.rezervacia_page .container {
 .extra-card .price {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #4C8CFF;
+    color: var(--zlata);
 }
 
 .extra-card .btn.add-to-cart {
     display: inline-block;
     padding: 10px 25px;
     border-radius: 50px;
-    background: #4C8CFF;
-    color: #fff;
+    background: var(--zlata);
+    color: #000;
     text-decoration: none;
     font-weight: 600;
     margin-top: 10px;
@@ -827,7 +812,7 @@ body.rezervacia_page .container {
 }
 
 .extra-card .btn.add-to-cart:hover {
-    background: #3577e6;
+    background: var(--zlata-svetla);
     transform: scale(1.05);
 }
 /* #endregion */
@@ -835,7 +820,7 @@ body.rezervacia_page .container {
 
 
 .site-footer {
-    background-color: #111;
+    background-color: var(--tmava);
     color: #fff;
     padding: 40px 20px 20px 20px;
     font-family: 'Arial', sans-serif;
@@ -893,7 +878,7 @@ body.rezervacia_page .container {
 }
 
 .footer-links ul li a:hover {
-    color: #3b82f6; /* modrá farba */
+    color: var(--zlata-svetla); /* modrá farba */
 }
 
 .footer-contact .social-icons {
@@ -908,7 +893,7 @@ body.rezervacia_page .container {
 }
 
 .footer-contact .social-icons a:hover {
-    color: #3b82f6;
+    color: var(--zlata-svetla);
 }
 
 .footer-bottom {
@@ -985,8 +970,8 @@ body.rezervacia_page .container {
 }
 
 .pricing-card .btn.add-to-cart {
-    background-color: #4C8CFF;
-    color: #fff;
+    background-color: var(--zlata);
+    color: #000;
     padding: 10px;
     border-radius: 5px;
     text-decoration: none;
@@ -994,7 +979,7 @@ body.rezervacia_page .container {
 }
 
 .pricing-card .btn.add-to-cart:hover {
-    background-color: #3b82f6   ;
+    background-color: var(--zlata-svetla)   ;
 }
 
 /* Vypredané produkty */
@@ -1142,7 +1127,7 @@ body.rezervacia_page .container {
     font-size: 0.78rem;
     font-weight: 700;
     color: #000;
-    background: #ffd700;
+    background: var(--zlata);
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
@@ -1192,7 +1177,7 @@ body.rezervacia_page .container {
 .chip {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #ffd700;
+    color: var(--zlata);
     padding: 4px 11px;
     border: 1px solid rgba(255, 215, 0, 0.5);
     border-radius: 20px;
@@ -1224,7 +1209,7 @@ body.rezervacia_page .container {
     color: #f0f0f0;
 }
 .trainer-stats li i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1.2rem;
 }
 
@@ -1236,14 +1221,14 @@ body.rezervacia_page .container {
     font-size: 1.05rem;
     font-weight: 700;
     padding: 12px 20px;
-    background: #ffd700;
+    background: var(--zlata);
     color: #000;
     text-decoration: none;
     border-radius: 40px;
     transition: transform 0.2s, background 0.2s;
 }
 .trainer-btn:hover {
-    background: #ffdd57;
+    background: var(--zlata-svetla);
     transform: scale(1.03);
 }
 
@@ -1305,11 +1290,11 @@ body.rezervacia_page .container {
 .reviews-summary .avg-number {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #ffd700;
+    color: var(--zlata);
 }
 
 .reviews-summary .avg-stars i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1.5rem;
 }
 
@@ -1376,7 +1361,7 @@ body.rezervacia_page .container {
 .star-rating label:hover,
 .star-rating label:hover ~ label,
 .star-rating input:checked ~ label {
-    color: #ffd700;
+    color: var(--zlata);
 }
 
 .star-rating label:hover {
@@ -1387,8 +1372,8 @@ body.rezervacia_page .container {
     align-self: flex-start;
     font-size: 1.1rem;
     padding: 12px 25px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--zlata);
+    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -1396,7 +1381,7 @@ body.rezervacia_page .container {
 }
 
 .review-submit:hover {
-    background-color: #0056b3;
+    background-color: var(--zlata-svetla);
     transform: scale(1.05);
 }
 
@@ -1407,7 +1392,7 @@ body.rezervacia_page .container {
 }
 
 .review-login-note a {
-    color: #ffd700;
+    color: var(--zlata);
     font-weight: 700;
     text-decoration: none;
 }
@@ -1460,7 +1445,7 @@ body.rezervacia_page .container {
 }
 
 .review-stars i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1.1rem;
 }
 
@@ -1538,7 +1523,7 @@ body.rezervacia_page .container {
 .contact-info-card h3 {
     text-align: left;
     font-size: 1.3rem;
-    color: #ffd700;
+    color: var(--zlata);
     margin: 25px 0 12px;
 }
 
@@ -1563,7 +1548,7 @@ body.rezervacia_page .container {
 
 .contact-list i {
     font-size: 1.5rem;
-    color: #ffd700;
+    color: var(--zlata);
     min-width: 28px;
     text-align: center;
 }
@@ -1604,7 +1589,7 @@ body.rezervacia_page .container {
 }
 
 .contact-socials a:hover {
-    background: #ffd700;
+    background: var(--zlata);
     color: #000;
     transform: scale(1.1);
 }
@@ -1758,7 +1743,7 @@ body.rezervacia_page .container {
     min-width: 280px;
 }
 .profil-card h2 {
-    color: #ffd700;
+    color: var(--zlata);
     margin-bottom: 18px;
     font-size: 1.5rem;
 }
@@ -1804,7 +1789,7 @@ body.rezervacia_page .container {
     outline: none;
 }
 .profil-form input:focus {
-    border-color: #ffd700;
+    border-color: var(--zlata);
 }
 .profil-form .btn {
     margin-top: 18px;
@@ -1882,12 +1867,12 @@ body.rezervacia_page .container {
     color: #fff;
 }
 .zoom-label i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1.2rem;
 }
 .zoom-label input[type="range"] {
     flex: 1;
-    accent-color: #ffd700;
+    accent-color: var(--zlata);
     cursor: pointer;
 }
 .cropper-hint {
@@ -1917,7 +1902,7 @@ body.rezervacia_page .container {
     align-items: center;
     gap: 8px;
     padding: 11px 22px;
-    background: #ffd700;
+    background: var(--zlata);
     color: #000;
     border: none;
     border-radius: 40px;
@@ -1958,7 +1943,7 @@ body.rezervacia_page .container {
 .rez-typ {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #ffd700;
+    color: var(--zlata);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1994,7 +1979,7 @@ body.rezervacia_page .container {
     font-size: 0.98rem;
 }
 .rez-detaily li i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1.1rem;
 }
 .rez-zrusit {
@@ -2014,7 +1999,7 @@ body.rezervacia_page .container {
     transition: background 0.2s, transform 0.2s;
 }
 .rez-zrusit:hover {
-    background: #dc3545;
+    background: var(--cervena);
     transform: scale(1.03);
 }
 .rez-nelze {
@@ -2032,7 +2017,7 @@ body.rezervacia_page .container {
     text-align: center;
 }
 .rez-nelze i {
-    color: #ffd700;
+    color: var(--zlata);
     font-size: 1rem;
 }
 

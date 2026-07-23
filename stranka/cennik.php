@@ -1,4 +1,11 @@
 <?php
+/*
+ * cennik.php – stránka Obchod.
+ * Produkty sú uložené v poli $products. Cez PHP cyklus foreach sa z každého
+ * produktu automaticky vytvorí jedna kartička. Vypredané produkty dostanú
+ * triedu "sold-out" (prečiarknutá cena a skryté tlačidlo).
+ * Ak chceš pridať/zmeniť produkt, stačí upraviť pole $products nižšie.
+ */
 $products = [
     ["name" => "Tričko", "img" => "obrazky/tricko-pred.png", "status" => "Na predaj", "price" => 20],
     ["name" => "Mikina", "img" => "obrazky/mikina.png", "status" => "Na predaj", "price" => 40],
@@ -21,7 +28,7 @@ $products = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cenník</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="cennik-page">

@@ -1,10 +1,18 @@
+<?php
+/*
+ * treneri.php – stránka Tréneri.
+ * Zobrazuje trénerov ako mriežku kartičiek (foto, meno, štítky, popis, cena).
+ * Tlačidlo "Rezervuj" vedie na rezervaciu s vopred vybraným trénerom
+ * cez adresu:  rezervacia.php?trener=Meno
+ */
+?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tréneri</title>
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="treneri_page">
