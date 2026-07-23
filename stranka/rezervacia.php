@@ -78,7 +78,7 @@ if ($datum == date('Y-m-d')) {
 <head>
 <meta charset="UTF-8">
 <title>Tréningy</title>
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="rezervacia_page">

@@ -2032,3 +2032,278 @@ body.rezervacia_page .container {
     }
 }
 /* #endregion */
+/* #region kosik (obchod / kosik) */
+
+/* --- Ikona kosika v hlavicke --- */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+.cart-icon {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 50%;
+    background: #424242;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+.cart-icon:hover {
+    transform: scale(1.05);
+}
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: var(--zlata);
+    color: #000;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Pozadie + hlavicka na stranke kosika --- */
+.kosik_page {
+    background: url('obrazky/pozadie2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.kosik_page .home-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+.kosik_page .header-inner {
+    margin: 10px auto;
+}
+
+/* --- Obsah stranky kosika --- */
+.kosik-page {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+}
+.kosik-page h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-align: center;
+    color: #fff;
+    margin-bottom: 24px;
+}
+.kosik-layout {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.kosik-polozky {
+    flex: 1.3;
+    min-width: 300px;
+}
+.kosik-pokladna {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* --- Jedna polozka v kosiku --- */
+.kosik-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--karta);
+    border: 2px solid var(--ramik);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(20px);
+    color: #fff;
+}
+.kosik-item img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.kosik-item-info {
+    flex: 1;
+    min-width: 0;
+}
+.kosik-item-info h3 {
+    font-size: 1.05rem;
+}
+.kosik-item-cena {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+.kosik-mnozstvo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.kosik-mnozstvo form {
+    margin: 0;
+}
+.kosik-mnozstvo button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--ramik);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+.kosik-mnozstvo button:hover {
+    background: var(--zlata);
+    color: #000;
+}
+.kosik-mnozstvo span {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+.kosik-item-spolu {
+    min-width: 72px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--zlata);
+}
+.kosik-odstranit {
+    background: none;
+    border: none;
+    color: #ff8a8a;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+.kosik-odstranit:hover {
+    color: var(--cervena);
+}
+.kosik-medzisucet {
+    text-align: right;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 8px;
+}
+
+/* --- Pokladna (formular) --- */
+.kosik-pokladna {
+    background: var(--karta);
+    border: 2px solid var(--ramik);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(20px);
+    color: #fff;
+}
+.kosik-pokladna h2 {
+    color: var(--zlata);
+    margin-bottom: 16px;
+}
+.pokladna-form {
+    display: flex;
+    flex-direction: column;
+}
+.pokladna-form label {
+    margin: 10px 0 5px;
+    font-size: 0.92rem;
+}
+.pokladna-form input[type="text"],
+.pokladna-form input[type="email"] {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--ramik);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+}
+.pokladna-form input:focus {
+    border-color: var(--zlata);
+}
+.doprava-vyber {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.doprava-moznost {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid var(--ramik);
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0;
+}
+.doprava-moznost input {
+    accent-color: var(--zlata);
+}
+.doprava-polia {
+    display: flex;
+    flex-direction: column;
+}
+.packeta-hint {
+    font-size: 0.82rem;
+    color: #cfcfcf;
+    margin-top: 4px;
+}
+.pokladna-form .btn {
+    margin-top: 18px;
+}
+
+/* --- Potvrdenie objednavky --- */
+.kosik-hotovo {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--karta);
+    border: 2px solid var(--ramik);
+    border-radius: 18px;
+    padding: 40px 28px;
+    backdrop-filter: blur(20px);
+    color: #fff;
+}
+.kosik-hotovo i {
+    font-size: 4rem;
+    color: var(--zlata);
+}
+.kosik-hotovo h2 {
+    margin: 10px 0;
+}
+.kosik-hotovo-detail {
+    color: #ddd;
+    margin-top: 8px;
+}
+.kosik-hotovo .btn {
+    margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+    .kosik-layout {
+        flex-direction: column;
+    }
+    .kosik-polozky,
+    .kosik-pokladna {
+        width: 100%;
+    }
+}
+/* #endregion */

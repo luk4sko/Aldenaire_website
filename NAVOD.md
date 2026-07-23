@@ -34,16 +34,19 @@ rocnikovy_projekt/
 ├─ NAVOD.md                ← tento návod
 ├─ database/               ← záloha štruktúry databázy
 └─ stranka/                ← celá webová stránka
-   ├─ db_config.php        ← pripojenie k databáze (premenná $pdo)
+   ├─ db_config.php        ← pripojenie k databáze (TAJNÉ, nie je na GitHube)
+   ├─ db_config.example.php← vzor pripojenia (bez hesla, na GitHube je)
    ├─ home.php             ← úvodná stránka
-   ├─ treneri.php          ← tréneri (mriežka kartičiek)
-   ├─ cennik.php           ← obchod (produkty)
+   ├─ treneri.php          ← tréneri (údaje v poli $treneri navrchu súboru)
+   ├─ produkty.php         ← zoznam produktov (pole $produkty)
+   ├─ cennik.php           ← obchod (vypíše produkty z produkty.php)
+   ├─ kosik.php            ← nákupný košík + pokladňa (objednávka)
    ├─ recenzie.php         ← recenzie / hodnotenia
    ├─ kontakt.php          ← kontakt + mapa
    ├─ rezervacia.php       ← vytvorenie rezervácie tréningu
    ├─ moje_rezervacie.php  ← prehľad vlastných rezervácií
    ├─ profil.php           ← profil používateľa (+ orezávač fotky)
-   ├─ login_page.php       ← prihlásenie
+   ├─ login_page.php       ← prihlásenie (+ "Zapamätať si ma")
    ├─ register_page.php    ← registrácia
    ├─ logout.php           ← odhlásenie
    ├─ style.css            ← VŠETKY štýly (farby, rozloženie)
@@ -114,6 +117,19 @@ Tri tabuľky:
 | hviezdicky | hodnotenie 1–5 |
 | datum | dátum a čas |
 
+**`objednavky`** — objednávky z obchodu
+| stĺpec | význam |
+|--------|--------|
+| id | číslo objednávky |
+| meno | meno zákazníka |
+| email | email zákazníka |
+| telefon | telefón |
+| sposob_dorucenia | "adresa" alebo "packeta" |
+| adresa | doručovacia adresa / výdajné miesto |
+| polozky | zoznam produktov (napr. "Tričko x2") |
+| spolu | suma spolu (s dopravou) |
+| datum | dátum objednávky |
+
 ---
 
 ## 5. Ako meniť bežné veci  ⭐ (toto sa najčastejšie pýtajú)
@@ -137,25 +153,36 @@ Texty sú priamo v HTML v jednotlivých `.php` súboroch. Napr. hlavný nadpis n
 úvode zmeníš v `home.php` v riadku `<h1>Dosiahni svoju najlepšiu formu!</h1>`.
 
 ### 5.3 Zmena / pridanie produktu v obchode
-V `cennik.php` hore je pole `$products`. Pridáš alebo upravíš riadok:
+Všetky produkty sú v súbore `produkty.php` v poli `$produkty`. Pridáš/upravíš riadok
+(vľavo je **id** – každé musí byť iné):
 
 ```php
-["name" => "Kreatin", "img" => "obrazky/kreatin.webp", "status" => "Na predaj", "price" => 35],
+7 => ["name" => "Kreatin", "img" => "obrazky/kreatin.webp", "status" => "Na predaj", "price" => 35],
 ```
 Karta v obchode sa vytvorí **automaticky** (PHP cyklus `foreach`).
-`status => "Vypredané"` prečiarkne cenu a skryje tlačidlo.
+`status => "Vypredané"` prečiarkne cenu a skryje tlačidlo do košíka.
 
-### 5.4 Zmena trénera
-V `treneri.php` je pre každého trénera jedna `<div class="trainer-card">`.
-Zmeníš meno, foto (`obrazky/...`), štítky (`chip`), popis a cenu.
-Tlačidlo „Rezervuj“ má odkaz `rezervacia.php?trener=Meno` — to meno musí sedieť
-s možnosťou v rozbaľovacom zozname v `rezervacia.php`.
+### 5.4 Zmena trénera  ← toto sa dá meniť veľmi ľahko
+Všetci tréneri sú v súbore `treneri.php` v poli `$treneri` úplne navrchu.
+Každý tréner je jeden blok `[ ... ]`, kde zmeníš:
+`meno`, `foto` (názov súboru v `obrazky/`), `popis`, `specializacie` (štítky),
+`roky`, `zameranie`, `cena` a `top` (true = odznak „Top tréner“).
+Kartička sa potom vytvorí automaticky. Novú fotku daj do `obrazky/`.
+Pozn.: `meno` musí sedieť s ponukou trénerov v `rezervacia.php`.
 
-### 5.5 Pridanie novej stránky
+### 5.5 Ako funguje košík (obchod)
+- Košík je uložený v **session**: `$_SESSION['kosik'] = [ id_produktu => počet ]`.
+- „Pridať do košíka“ pošle **id** produktu do `kosik.php`, ktorý ho pridá.
+- V košíku sa dá meniť počet (+/−) a odstrániť položka.
+- Pri objednávke vyplníš údaje a **spôsob doručenia** (na adresu / Packeta).
+  Objednávka sa uloží do tabuľky `objednavky` a košík sa vyprázdni.
+- Platba zatiaľ nie je – objednávka sa len zaznamená.
+
+### 5.6 Pridanie novej stránky
 1. Vytvor nový súbor, napr. `novastranka.php`.
 2. Na začiatok daj hlavičku a na koniec pätu:
    ```php
-   <link rel="stylesheet" href="style.css?v=11">
+   <link rel="stylesheet" href="style.css?v=12">
    ...
    <div class="fixed-header"><?php include 'includes/header.php'; ?></div>
    ... obsah ...
@@ -163,9 +190,10 @@ s možnosťou v rozbaľovacom zozname v `rezervacia.php`.
    ```
 3. Pridaj odkaz do menu v `includes/header.php`.
 
-### 5.6 Prečo je v odkaze na CSS `?v=10`?
-Prehliadač si CSS **ukladá do pamäte** (cache). Keď zmeníš štýly, zvýšiš číslo
-(`?v=11`), aby prehliadač načítal novú verziu a nezobrazoval starú.
+### 5.7 Zmena farby webu a cache verzia CSS `?v=12`
+Farbu meníš v `style.css` hore v `:root` (premenná `--zlata`).
+Prehliadač si CSS **ukladá do pamäte** (cache). Keď zmeníš štýly, zvýš číslo verzie
+vo všetkých stránkach (napr. z `?v=12` na `?v=13`), aby prehliadač načítal nový CSS.
 
 ---
 
@@ -183,6 +211,10 @@ Prehliadač si CSS **ukladá do pamäte** (cache). Keď zmeníš štýly, zvýš
 - **Ochrana pred XSS.** Text od používateľov (napr. recenzie) sa pri výpise
   ošetruje cez `htmlspecialchars(...)`, aby sa nedal vložiť škodlivý kód.
 - **Chránené stránky** kontrolujú prihlásenie cez `$_SESSION`.
+- **Heslo k databáze nie je na GitHube.** Súbor `db_config.php` je v `.gitignore`.
+  Na GitHube je len vzor `db_config.example.php` bez skutočného hesla.
+- **„Zapamätať si ma“.** Ak je políčko zaškrtnuté, prihlásenie (session cookie)
+  platí 30 dní: `session_set_cookie_params(30*24*60*60)` pred `session_start()`.
 
 ---
 
@@ -215,16 +247,26 @@ výsledný štvorcový obrázok sa pošle na server a uloží do `uploads/profil
 **Kde zmením farbu webu?**
 V `style.css` hore v `:root`, premenná `--zlata`.
 
+**Ako funguje nákupný košík?**
+Košík je uložený v session (`$_SESSION['kosik']`). Produkty sa pridávajú podľa **id**.
+Pri objednávke sa vyplnia údaje a spôsob doručenia (adresa/Packeta) a objednávka sa
+`INSERT`-om uloží do tabuľky `objednavky`. Platba zatiaľ nie je.
+
+**Ako funguje „Zapamätať si ma“?**
+Ak je políčko zaškrtnuté, pred `session_start()` sa nastaví platnosť session cookie
+na 30 dní (`session_set_cookie_params`). Bez zaškrtnutia platí len do zatvorenia prehliadača.
+
 ---
 
 ## 8. Návrhy na zlepšenie (čo sa dá ešte doplniť)
 
-1. **Skryť heslo k databáze.** `db_config.php` obsahuje heslo napísané priamo v
-   kóde a je na GitHube. Lepšie je držať ho mimo verejného repozitára
-   (napr. v samostatnom súbore, ktorý sa nenahráva na GitHub).
-2. **Funkčný košík.** Tlačidlá „Pridať do košíka“ zatiaľ nič nerobia (`href="#"`).
-3. **Recenzie k trénerom.** Recenzie by mohli byť priradené ku konkrétnemu trénerovi.
-4. **Kontrola vstupov.** Pri registrácii overiť formát emailu a minimálnu dĺžku hesla.
-5. **Overenie emailu / obnova hesla.** Odkaz „Forgot password?“ zatiaľ nefunguje.
-6. **Jednotný jazyk kódu.** Menšie zvyšky angličtiny v triedach/komentároch zjednotiť.
+1. **Zmeniť heslo k databáze.** Súbor `db_config.php` je síce skrytý (`.gitignore`),
+   ale staré heslo je stále vidieť v **histórii commitov** na GitHube. Preto treba
+   heslo v Supabase **zmeniť** (a nové dať len do lokálneho `db_config.php`).
+2. **Reálna Packeta.** Teraz sa výdajné miesto píše ručne; dá sa doplniť oficiálny
+   widget Packeta (mapa výberu miest) cez ich API kľúč.
+3. **Platba.** Do košíka pridať platobnú bránu (napr. kartou).
+4. **Recenzie k trénerom.** Recenzie by mohli byť priradené ku konkrétnemu trénerovi.
+5. **Kontrola vstupov.** Pri registrácii overiť formát emailu a minimálnu dĺžku hesla.
+6. **Obnova hesla.** Odkaz „Zabudol si heslo?“ zatiaľ nefunguje.
 ```

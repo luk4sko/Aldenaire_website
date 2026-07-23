@@ -4,6 +4,15 @@
  * Skontroluje meno a heslo oproti databáze. Ak sedia, uloží meno do
  * $_SESSION (session = "pamäť" prihlásenia) a presmeruje na rezerváciu.
  */
+/*
+ * "Zapamätať si ma": ak používateľ zaškrtol políčko, predĺžime platnosť
+ * prihlásenia (session cookie) na 30 dní. Inak platí len do zatvorenia
+ * prehliadača. Toto sa MUSÍ nastaviť ešte pred session_start().
+ */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remember'])) {
+    session_set_cookie_params(30 * 24 * 60 * 60); // 30 dní (v sekundách)
+}
+
 session_start();               // spustí session – aby si web pamätal, kto je prihlásený
 require 'db_config.php';        // pripojenie k databáze ($pdo)
 
@@ -39,42 +48,43 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
-<link rel="stylesheet" href="style.css?v=11">
+<title>Prihlásenie</title>
+<link rel="stylesheet" href="style.css?v=12">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="login-page">
 <div class="wrapper">
-    <form action="login_page.php" method="post">  
-      <h1> LOGIN </h1>
+    <form action="login_page.php" method="post">
+      <h1> PRIHLÁSENIE </h1>
 
         <div class="input-box">
-            <input type="text" name="Username" placeholder="Username" required>
+            <input type="text" name="Username" placeholder="Používateľské meno" required>
             <i class='bx bxs-user'></i>
         </div>
 
         <div class="input-box">
-            <input type="password" name="Password" placeholder="Password" required>     
+            <input type="password" name="Password" placeholder="Heslo" required>
             <i class='bx bxs-lock-alt' ></i>
         </div>
 
         <div class="remember-forget">
-            <label> 
-                <input type="checkbox">
+            <label>
+                <!-- name="remember" -> podľa neho PHP zistí, či je políčko zaškrtnuté -->
+                <input type="checkbox" name="remember">
                 <img class="prvy" src="obrazky/checkbox1.png">
                 <img class="hover" src="obrazky/hover.png">
                 <img class="druhy" src="obrazky/checkbox.png">
-                <span class="pamataj">Remember me</span>
+                <span class="pamataj">Zapamätať si ma</span>
             </label>
-            <a href="#" class="zabudol"> Forgot password? </a>
+            <a href="#" class="zabudol"> Zabudol si heslo? </a>
         </div>
 
-        <button type="submit" class="btn"> Login </button>
+        <button type="submit" class="btn"> Prihlásiť sa </button>
 
         <?php if(isset($error)) echo "<p class='rezervovane'>$error</p>"; ?>
 
         <div class="register-link">
-            <p>Don't have an account? <a href="register_page.php" class="registerr">Register</a></p>
+            <p>Nemáš účet? <a href="register_page.php" class="registerr">Zaregistruj sa</a></p>
         </div>
 
     </form>

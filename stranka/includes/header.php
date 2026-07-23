@@ -21,6 +21,9 @@ if (isset($_SESSION['username'])) {
     $__s->execute([$_SESSION['username']]);
     $__avatar = $__s->fetchColumn();
 }
+
+// Počet kusov v košíku (pre číslo pri ikone košíka)
+$__kosikPocet = empty($_SESSION['kosik']) ? 0 : array_sum($_SESSION['kosik']);
 ?>
 <header class="home-header">
     <div class="header-inner">
@@ -38,7 +41,17 @@ if (isset($_SESSION['username'])) {
             <a href="kontakt.php">Kontakt</a>
         </nav>
 
-        <!-- SEARCH + PROFILE -->
+        <!-- KOŠÍK + PROFIL (pravá strana hlavičky) -->
+        <div class="header-right">
+
+        <!-- Ikona košíka s počtom kusov -->
+        <a href="kosik.php" class="cart-icon" title="Košík">
+            <i class='bx bx-cart'></i>
+            <?php if ($__kosikPocet > 0): ?>
+                <span class="cart-badge"><?php echo $__kosikPocet; ?></span>
+            <?php endif; ?>
+        </a>
+
         <div class="profile-wrapper">
             <div class="profile-icon" id="profileToggle">
                 <?php if ($__avatar): ?>
@@ -66,7 +79,9 @@ if (isset($_SESSION['username'])) {
                     <a href="register_page.php"><i class='bx bx-user-plus'></i> Registrovať sa</a>
                 <?php endif; ?>
             </div>
-        </div>
+        </div><!-- /.profile-wrapper -->
+
+        </div><!-- /.header-right -->
     </div>
 <script src="script.js"></script>
 </header>
