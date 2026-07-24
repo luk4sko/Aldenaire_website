@@ -1,9 +1,4 @@
 <?php
-/*
- * recenzie.php – recenzie (hodnotenia).
- * Ktokoľvek si môže prečítať recenzie. Pridať recenziu môže len prihlásený
- * používateľ (hviezdičky 1–5 + text). Hore sa počíta priemerné hodnotenie.
- */
 session_start();
 require 'db_config.php';
 

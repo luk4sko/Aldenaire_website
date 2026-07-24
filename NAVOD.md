@@ -134,19 +134,14 @@ Tri tabuľky:
 
 ## 5. Ako meniť bežné veci  ⭐ (toto sa najčastejšie pýtajú)
 
-### 5.1 Zmena farby celého webu
-Všetky hlavné farby sú **na jednom mieste** — úplne hore v `style.css` v bloku `:root`:
+### 5.1 Zmena farby webu
+Farby sú v `style.css`. Hlavná zlatá farba je `#ffd700` (svetlejšia zlatá pri
+prejdení myšou je `#ffdd57`). Najrýchlejšie ju zmeníš v editore cez **Nájsť a
+nahradiť** (Ctrl+H): nahraď `#ffd700` svojou farbou.
 
-```css
-:root {
-    --zlata: #ffd700;          /* hlavná farba značky */
-    --zlata-svetla: #ffdd57;   /* svetlejšia zlatá pri prejdení myšou */
-    ...
-}
-```
-
-Zmeníš `--zlata` a **zmení sa všetko** zlaté na webe (tlačidlá, ceny, štítky…),
-lebo v štýloch sa farba nepíše priamo, ale ako `var(--zlata)`.
+**Dôležité:** po zmene štýlov stlač v prehliadači **Ctrl+F5** (tvrdé obnovenie).
+Prehliadač si totiž CSS ukladá do pamäte (cache) a po obyčajnom obnovení by ti
+zobrazil starú farbu – preto sa zmena „neprejaví“.
 
 ### 5.2 Zmena textu
 Texty sú priamo v HTML v jednotlivých `.php` súboroch. Napr. hlavný nadpis na
@@ -190,10 +185,10 @@ Pozn.: `meno` musí sedieť s ponukou trénerov v `rezervacia.php`.
    ```
 3. Pridaj odkaz do menu v `includes/header.php`.
 
-### 5.7 Zmena farby webu a cache verzia CSS `?v=12`
-Farbu meníš v `style.css` hore v `:root` (premenná `--zlata`).
-Prehliadač si CSS **ukladá do pamäte** (cache). Keď zmeníš štýly, zvýš číslo verzie
-vo všetkých stránkach (napr. z `?v=12` na `?v=13`), aby prehliadač načítal nový CSS.
+### 5.7 Cache verzia CSS `?v=12`
+V odkaze `style.css?v=12` je číslo verzie. Prehliadač si CSS ukladá do pamäte
+(cache). Ak sa nová verzia štýlov nezobrazuje ani po Ctrl+F5, zvýš toto číslo
+(napr. z `?v=12` na `?v=13`) vo všetkých stránkach – prehliadač si vypýta nový súbor.
 
 ---
 
@@ -245,7 +240,8 @@ Používateľ obrázok v prehliadači oreže do kruhu (JavaScript v `profil.php`
 výsledný štvorcový obrázok sa pošle na server a uloží do `uploads/profilovky/`.
 
 **Kde zmením farbu webu?**
-V `style.css` hore v `:root`, premenná `--zlata`.
+V `style.css`. Hlavná zlatá farba je `#ffd700` (v editore ju hromadne nahradíš
+cez Ctrl+H). Po zmene stlač v prehliadači Ctrl+F5.
 
 **Ako funguje nákupný košík?**
 Košík je uložený v session (`$_SESSION['kosik']`). Produkty sa pridávajú podľa **id**.

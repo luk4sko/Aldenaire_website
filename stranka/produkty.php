@@ -1,18 +1,5 @@
 <?php
-/*
- * produkty.php – zoznam produktov v obchode.
- * Používa ho stránka obchodu (cennik.php) aj košík (kosik.php),
- * aby boli produkty definované len na JEDNOM mieste.
- *
- * Každý produkt má svoje "id" (číslo v hranatej zátvorke vľavo) – podľa neho
- * ho košík rozpozná. Polia:
- *     "name"   -> názov produktu
- *     "img"    -> obrázok v priečinku obrazky/
- *     "status" -> "Na predaj" alebo "Vypredané"
- *     "price"  -> cena v eurách (len číslo)
- *
- * Pridať produkt = pridať nový riadok s ďalším voľným id.
- */
+// Produkty v obchode (id => údaje). Používa cennik.php aj kosik.php.
 $produkty = [
     1  => ["name" => "Tričko",             "img" => "obrazky/tricko-pred.png", "status" => "Na predaj", "price" => 20],
     2  => ["name" => "Mikina",             "img" => "obrazky/mikina.png",      "status" => "Na predaj", "price" => 40],

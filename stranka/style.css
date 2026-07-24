@@ -1,24 +1,4 @@
-/* ===================================================================
-   FARBY WEBU – všetky hlavné farby na jednom mieste.
-   Chceš zmeniť farbu celého webu? Stačí zmeniť hodnotu tu jeden raz.
-   V štýloch sa potom používajú takto:   color: var(--zlata);
-   =================================================================== */
-:root {
-    --zlata: #ffd700;               /* hlavná (značková) zlatá farba */
-    --zlata-svetla: #ffdd57;        /* svetlejšia zlatá – pri prejdení myšou (hover) */
-
-    --tmava: #111111;               /* tmavé pozadie (napr. footer) */
-    --karta: rgba(0, 0, 0, 0.5);    /* priehľadné tmavé pozadie kariet */
-    --ramik: rgba(255, 255, 255, 0.18); /* svetlý okraj kariet */
-
-    --text-biely: #ffffff;          /* biely nadpis / text */
-    --text-svetly: #eaeaea;         /* jemne sivý text v odsekoch */
-
-    --zelena: #28a745;              /* zelená – úspešné hlášky */
-    --cervena: #dc3545;             /* červená – chyby a zrušenie */
-}
-
-/* ----------------- GLOBAL (platí pre celú stránku) ----------------- */
+/* ----------------- GLOBAL ----------------- */
 * {
     margin: 0;
     padding: 0;
@@ -213,7 +193,7 @@
     padding: 15px 40px;
     font-size: 1.2rem;
     color: #000;
-    background: var(--zlata);
+    background: #ffd700;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
@@ -222,7 +202,7 @@
 }
 
 .hero-btn:hover {
-    background: var(--zlata-svetla);
+    background: #ffdd57;
     transform: scale(1.05);
 }
 
@@ -270,7 +250,7 @@
     padding: 80px 10%;
     text-align: center;
     color: #fff;
-    background: var(--tmava); /* tmavé pozadie sekcie */
+    background: #111; /* tmavé pozadie sekcie */
 }
 
 .coaches h2 {
@@ -427,7 +407,7 @@ select option {
 }
 
 input[type="submit"] {
-    background: var(--zelena);
+    background: #28a745;
     color: white;
     border: none;
     cursor: pointer;
@@ -459,7 +439,7 @@ th, td {
 
 .odpoved {
     text-align: center;
-    color: var(--zelena);
+    color: #28a745;
     font-weight: bold;
     padding-bottom: 10px;
 }
@@ -796,14 +776,14 @@ body.rezervacia_page .container {
 .extra-card .price {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--zlata);
+    color: #ffd700;
 }
 
 .extra-card .btn.add-to-cart {
     display: inline-block;
     padding: 10px 25px;
     border-radius: 50px;
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
     text-decoration: none;
     font-weight: 600;
@@ -812,7 +792,7 @@ body.rezervacia_page .container {
 }
 
 .extra-card .btn.add-to-cart:hover {
-    background: var(--zlata-svetla);
+    background: #ffdd57;
     transform: scale(1.05);
 }
 /* #endregion */
@@ -820,7 +800,7 @@ body.rezervacia_page .container {
 
 
 .site-footer {
-    background-color: var(--tmava);
+    background-color: #111;
     color: #fff;
     padding: 40px 20px 20px 20px;
     font-family: 'Arial', sans-serif;
@@ -878,7 +858,7 @@ body.rezervacia_page .container {
 }
 
 .footer-links ul li a:hover {
-    color: var(--zlata-svetla); /* modrá farba */
+    color: #ffdd57; /* modrá farba */
 }
 
 .footer-contact .social-icons {
@@ -893,7 +873,7 @@ body.rezervacia_page .container {
 }
 
 .footer-contact .social-icons a:hover {
-    color: var(--zlata-svetla);
+    color: #ffdd57;
 }
 
 .footer-bottom {
@@ -970,7 +950,7 @@ body.rezervacia_page .container {
 }
 
 .pricing-card .btn.add-to-cart {
-    background-color: var(--zlata);
+    background-color: #ffd700;
     color: #000;
     padding: 10px;
     border-radius: 5px;
@@ -979,7 +959,7 @@ body.rezervacia_page .container {
 }
 
 .pricing-card .btn.add-to-cart:hover {
-    background-color: var(--zlata-svetla)   ;
+    background-color: #ffdd57   ;
 }
 
 /* Vypredané produkty */
@@ -1127,7 +1107,7 @@ body.rezervacia_page .container {
     font-size: 0.78rem;
     font-weight: 700;
     color: #000;
-    background: var(--zlata);
+    background: #ffd700;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
@@ -1177,7 +1157,7 @@ body.rezervacia_page .container {
 .chip {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--zlata);
+    color: #ffd700;
     padding: 4px 11px;
     border: 1px solid rgba(255, 215, 0, 0.5);
     border-radius: 20px;
@@ -1209,7 +1189,7 @@ body.rezervacia_page .container {
     color: #f0f0f0;
 }
 .trainer-stats li i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1.2rem;
 }
 
@@ -1221,14 +1201,14 @@ body.rezervacia_page .container {
     font-size: 1.05rem;
     font-weight: 700;
     padding: 12px 20px;
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
     text-decoration: none;
     border-radius: 40px;
     transition: transform 0.2s, background 0.2s;
 }
 .trainer-btn:hover {
-    background: var(--zlata-svetla);
+    background: #ffdd57;
     transform: scale(1.03);
 }
 
@@ -1290,11 +1270,11 @@ body.rezervacia_page .container {
 .reviews-summary .avg-number {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--zlata);
+    color: #ffd700;
 }
 
 .reviews-summary .avg-stars i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1.5rem;
 }
 
@@ -1361,7 +1341,7 @@ body.rezervacia_page .container {
 .star-rating label:hover,
 .star-rating label:hover ~ label,
 .star-rating input:checked ~ label {
-    color: var(--zlata);
+    color: #ffd700;
 }
 
 .star-rating label:hover {
@@ -1372,7 +1352,7 @@ body.rezervacia_page .container {
     align-self: flex-start;
     font-size: 1.1rem;
     padding: 12px 25px;
-    background-color: var(--zlata);
+    background-color: #ffd700;
     color: #000;
     border: none;
     border-radius: 5px;
@@ -1381,7 +1361,7 @@ body.rezervacia_page .container {
 }
 
 .review-submit:hover {
-    background-color: var(--zlata-svetla);
+    background-color: #ffdd57;
     transform: scale(1.05);
 }
 
@@ -1392,7 +1372,7 @@ body.rezervacia_page .container {
 }
 
 .review-login-note a {
-    color: var(--zlata);
+    color: #ffd700;
     font-weight: 700;
     text-decoration: none;
 }
@@ -1445,7 +1425,7 @@ body.rezervacia_page .container {
 }
 
 .review-stars i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1.1rem;
 }
 
@@ -1523,7 +1503,7 @@ body.rezervacia_page .container {
 .contact-info-card h3 {
     text-align: left;
     font-size: 1.3rem;
-    color: var(--zlata);
+    color: #ffd700;
     margin: 25px 0 12px;
 }
 
@@ -1548,7 +1528,7 @@ body.rezervacia_page .container {
 
 .contact-list i {
     font-size: 1.5rem;
-    color: var(--zlata);
+    color: #ffd700;
     min-width: 28px;
     text-align: center;
 }
@@ -1589,7 +1569,7 @@ body.rezervacia_page .container {
 }
 
 .contact-socials a:hover {
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
     transform: scale(1.1);
 }
@@ -1743,7 +1723,7 @@ body.rezervacia_page .container {
     min-width: 280px;
 }
 .profil-card h2 {
-    color: var(--zlata);
+    color: #ffd700;
     margin-bottom: 18px;
     font-size: 1.5rem;
 }
@@ -1789,7 +1769,7 @@ body.rezervacia_page .container {
     outline: none;
 }
 .profil-form input:focus {
-    border-color: var(--zlata);
+    border-color: #ffd700;
 }
 .profil-form .btn {
     margin-top: 18px;
@@ -1867,12 +1847,12 @@ body.rezervacia_page .container {
     color: #fff;
 }
 .zoom-label i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1.2rem;
 }
 .zoom-label input[type="range"] {
     flex: 1;
-    accent-color: var(--zlata);
+    accent-color: #ffd700;
     cursor: pointer;
 }
 .cropper-hint {
@@ -1902,7 +1882,7 @@ body.rezervacia_page .container {
     align-items: center;
     gap: 8px;
     padding: 11px 22px;
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
     border: none;
     border-radius: 40px;
@@ -1943,7 +1923,7 @@ body.rezervacia_page .container {
 .rez-typ {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--zlata);
+    color: #ffd700;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1979,7 +1959,7 @@ body.rezervacia_page .container {
     font-size: 0.98rem;
 }
 .rez-detaily li i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1.1rem;
 }
 .rez-zrusit {
@@ -1999,7 +1979,7 @@ body.rezervacia_page .container {
     transition: background 0.2s, transform 0.2s;
 }
 .rez-zrusit:hover {
-    background: var(--cervena);
+    background: #dc3545;
     transform: scale(1.03);
 }
 .rez-nelze {
@@ -2017,7 +1997,7 @@ body.rezervacia_page .container {
     text-align: center;
 }
 .rez-nelze i {
-    color: var(--zlata);
+    color: #ffd700;
     font-size: 1rem;
 }
 
@@ -2066,7 +2046,7 @@ body.rezervacia_page .container {
     min-width: 18px;
     height: 18px;
     padding: 0 5px;
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
     font-size: 0.72rem;
     font-weight: 700;
@@ -2128,8 +2108,8 @@ body.rezervacia_page .container {
     display: flex;
     align-items: center;
     gap: 14px;
-    background: var(--karta);
-    border: 2px solid var(--ramik);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.18);
     border-radius: 14px;
     padding: 12px;
     margin-bottom: 12px;
@@ -2165,7 +2145,7 @@ body.rezervacia_page .container {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1px solid var(--ramik);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255,255,255,0.1);
     color: #fff;
     cursor: pointer;
@@ -2173,7 +2153,7 @@ body.rezervacia_page .container {
     line-height: 1;
 }
 .kosik-mnozstvo button:hover {
-    background: var(--zlata);
+    background: #ffd700;
     color: #000;
 }
 .kosik-mnozstvo span {
@@ -2185,7 +2165,7 @@ body.rezervacia_page .container {
     min-width: 72px;
     text-align: right;
     font-weight: 700;
-    color: var(--zlata);
+    color: #ffd700;
 }
 .kosik-odstranit {
     background: none;
@@ -2195,7 +2175,7 @@ body.rezervacia_page .container {
     font-size: 1.3rem;
 }
 .kosik-odstranit:hover {
-    color: var(--cervena);
+    color: #dc3545;
 }
 .kosik-medzisucet {
     text-align: right;
@@ -2206,15 +2186,15 @@ body.rezervacia_page .container {
 
 /* --- Pokladna (formular) --- */
 .kosik-pokladna {
-    background: var(--karta);
-    border: 2px solid var(--ramik);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.18);
     border-radius: 18px;
     padding: 24px;
     backdrop-filter: blur(20px);
     color: #fff;
 }
 .kosik-pokladna h2 {
-    color: var(--zlata);
+    color: #ffd700;
     margin-bottom: 16px;
 }
 .pokladna-form {
@@ -2229,14 +2209,14 @@ body.rezervacia_page .container {
 .pokladna-form input[type="email"] {
     padding: 10px 12px;
     border-radius: 10px;
-    border: 1px solid var(--ramik);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255,255,255,0.1);
     color: #fff;
     font-size: 0.95rem;
     outline: none;
 }
 .pokladna-form input:focus {
-    border-color: var(--zlata);
+    border-color: #ffd700;
 }
 .doprava-vyber {
     display: flex;
@@ -2249,13 +2229,13 @@ body.rezervacia_page .container {
     align-items: center;
     gap: 8px;
     padding: 10px;
-    border: 1px solid var(--ramik);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     cursor: pointer;
     margin: 0;
 }
 .doprava-moznost input {
-    accent-color: var(--zlata);
+    accent-color: #ffd700;
 }
 .doprava-polia {
     display: flex;
@@ -2275,8 +2255,8 @@ body.rezervacia_page .container {
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
-    background: var(--karta);
-    border: 2px solid var(--ramik);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.18);
     border-radius: 18px;
     padding: 40px 28px;
     backdrop-filter: blur(20px);
@@ -2284,7 +2264,7 @@ body.rezervacia_page .container {
 }
 .kosik-hotovo i {
     font-size: 4rem;
-    color: var(--zlata);
+    color: #ffd700;
 }
 .kosik-hotovo h2 {
     margin: 10px 0;

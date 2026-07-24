@@ -1,35 +1,28 @@
 <?php
-/*
- * register_page.php – registrácia nového používateľa.
- * Skontroluje, či sa heslá zhodujú a či meno ešte nie je obsadené,
- * potom vytvorí nový účet v databáze (heslo uloží zašifrované).
- */
 session_start();
 require 'db_config.php';
 
-// Kód sa vykoná len po odoslaní registračného formulára (POST)
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password_repeat = $_POST['password_repeat'];   // heslo napísané druhýkrát pre kontrolu
+    $password_repeat = $_POST['password_repeat'];
 
     if($password !== $password_repeat){
         $error = "Heslá sa nezhodujú!";
     } else {
-        // Heslo NIKDY neukladáme v čitateľnej podobe – zašifrujeme ho (hash).
+        // heslo uložíme zašifrované
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Skontrolujeme, či meno už niekto nemá.
+        // kontrola či už meno existuje
         $check = $pdo->prepare("SELECT * FROM pouzivatelia WHERE username = ?");
         $check->execute([$username]);
         if($check->rowCount() > 0){
             $error = "Používateľ s týmto menom už existuje!";
         } else {
-            // Vložíme nového používateľa do tabuľky "pouzivatelia".
             $insert = $pdo->prepare("INSERT INTO pouzivatelia (username, email, password) VALUES (?, ?, ?)");
             $insert->execute([$username, $email, $password_hash]);
-            $_SESSION['username'] = $username;      // rovno ho aj prihlásime
+            $_SESSION['username'] = $username;
             header("Location: rezervacia.php");
             exit();
         }

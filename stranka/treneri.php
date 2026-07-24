@@ -1,24 +1,5 @@
 <?php
-/*
- * treneri.php – stránka Tréneri.
- *
- * ===========================================================================
- *  AKO ZMENIŤ TRÉNEROV:
- *  Všetci tréneri sú v poli $treneri hneď nižšie. Každý tréner = jeden blok
- *  medzi [ ... ]. Stačí upraviť text v úvodzovkách:
- *     "meno"          -> meno trénera (musí sedieť s ponukou v rezervacia.php)
- *     "foto"          -> názov súboru fotky v priečinku obrazky/
- *     "popis"         -> krátky text o trénerovi
- *     "specializacie" -> štítky (koľko chceš, oddelené čiarkou)
- *     "roky"          -> text o praxi
- *     "zameranie"     -> na čo sa zameriava
- *     "cena"          -> cena tréningu v eurách (len číslo)
- *     "top"           -> true = zvýrazní trénera odznakom "Top tréner"
- *
- *  Novú fotku ulož do priečinka obrazky/ a sem napíš jej názov.
- *  Nového trénera pridáš skopírovaním jedného bloku [ ... ], (nezabudni čiarku).
- * ===========================================================================
- */
+// Tréneri - uprav podľa seba (meno, foto v obrazky/, popis, cena, top = odznak)
 $treneri = [
     [
         "meno"          => "Marek",
@@ -73,7 +54,6 @@ $treneri = [
 
     <div class="trainers-grid">
         <?php foreach ($treneri as $t): ?>
-            <!-- Jedna kartička trénera (vytvorí sa automaticky pre každého v poli $treneri) -->
             <div class="trainer-card <?php echo $t['top'] ? 'featured' : ''; ?>">
                 <?php if ($t['top']): ?>
                     <span class="trainer-badge"><i class='bx bxs-star'></i> Top tréner</span>
@@ -100,7 +80,6 @@ $treneri = [
                         <li><i class='bx bx-euro'></i> <?php echo (int)$t['cena']; ?>€ / 2 hodiny</li>
                     </ul>
 
-                    <!-- Odkaz vopred vyberie tohto trénera v rezervačnom formulári -->
                     <a href="rezervacia.php?trener=<?php echo urlencode($t['meno']); ?>" class="btn trainer-btn">Rezervuj</a>
                 </div>
             </div>

@@ -1,14 +1,6 @@
 <?php
-/*
- * rezervacia.php – vytvorenie rezervácie tréningu.
- * Prístupná len prihláseným (inak presmeruje na prihlásenie).
- * Po odoslaní formulára skontroluje dátum/čas a či termín nie je obsadený,
- * a uloží tréning do tabuľky "treningy". Vpravo vypíše všetky tréningy.
- */
 session_start();
-date_default_timezone_set('Europe/Bratislava');   // slovenský čas (kontrola dátumu)
-
-// Ochrana stránky: kto nie je prihlásený, je presmerovaný na prihlásenie.
+date_default_timezone_set('Europe/Bratislava');
 if(!isset($_SESSION['username'])){
     header("Location: login_page.php");
     exit();
@@ -18,7 +10,7 @@ require 'db_config.php';
 
 $username = $_SESSION['username'];
 
-// Predvyplnenie trénera z odkazu na stránke Tréneri (?trener=...)
+// predvyplnenie trénera z odkazu na stránke Tréneri (?trener=...)
 $preselTrener = $_GET['trener'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

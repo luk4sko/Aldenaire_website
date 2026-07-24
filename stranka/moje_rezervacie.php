@@ -1,13 +1,6 @@
 <?php
-/*
- * moje_rezervacie.php – prehľad vlastných rezervácií používateľa.
- * Zobrazuje len tréningy prihláseného používateľa (podľa mena).
- * Zrušiť sa dá len tréning, ktorý je viac ako 24 hodín vopred.
- */
 session_start();
 date_default_timezone_set('Europe/Bratislava');
-
-// Len pre prihlásených.
 if (!isset($_SESSION['username'])) {
     header("Location: login_page.php");
     exit();

@@ -1,44 +1,30 @@
 <?php
-/*
- * login_page.php – prihlásenie používateľa.
- * Skontroluje meno a heslo oproti databáze. Ak sedia, uloží meno do
- * $_SESSION (session = "pamäť" prihlásenia) a presmeruje na rezerváciu.
- */
-/*
- * "Zapamätať si ma": ak používateľ zaškrtol políčko, predĺžime platnosť
- * prihlásenia (session cookie) na 30 dní. Inak platí len do zatvorenia
- * prehliadača. Toto sa MUSÍ nastaviť ešte pred session_start().
- */
+// Ak je zaškrtnuté "Zapamätať si ma", prihlásenie platí 30 dní (musí byť pred session_start)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remember'])) {
-    session_set_cookie_params(30 * 24 * 60 * 60); // 30 dní (v sekundách)
+    session_set_cookie_params(30 * 24 * 60 * 60);
 }
 
-session_start();               // spustí session – aby si web pamätal, kto je prihlásený
-require 'db_config.php';        // pripojenie k databáze ($pdo)
+session_start();
+require 'db_config.php';
 
-// Kód sa vykoná len keď používateľ odoslal formulár (metóda POST)
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $username = $_POST['Username'];   // meno z formulára
-    $password = $_POST['Password'];   // heslo z formulára
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
 
-    // Nájdeme používateľa v databáze podľa mena.
-    // "?" je zástupný znak – hodnotu doň bezpečne dosadí execute() (ochrana pred SQL injection).
     $stmt = $pdo->prepare("SELECT * FROM pouzivatelia WHERE username = ?");
     $stmt->execute([$username]);
-
-    if($stmt->rowCount() > 0){                     // ak taký používateľ existuje
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);     // načítame jeho údaje
-
-        // Heslá sú v databáze zašifrované. password_verify porovná zadané heslo so zašifrovaným.
+    if($stmt->rowCount() > 0){
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        // heslo je v databáze zašifrované, porovnáme cez password_verify
         if(password_verify($password, $user['password'])){
-            $_SESSION['username'] = $username;      // zapamätáme si prihláseného používateľa
-            header("Location: rezervacia.php");     // presmerujeme ho ďalej
+            $_SESSION['username'] = $username;
+            header("Location: rezervacia.php");
             exit();
         } else {
-            $error = "Nesprávne údaje!";            // zlé heslo
+            $error = "Nesprávne údaje!";
         }
     } else {
-        $error = "Používateľ neexistuje!";          // také meno v databáze nie je
+        $error = "Používateľ neexistuje!";
     }
 }
 ?>
@@ -69,7 +55,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         <div class="remember-forget">
             <label>
-                <!-- name="remember" -> podľa neho PHP zistí, či je políčko zaškrtnuté -->
                 <input type="checkbox" name="remember">
                 <img class="prvy" src="obrazky/checkbox1.png">
                 <img class="hover" src="obrazky/hover.png">

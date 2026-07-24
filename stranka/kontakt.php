@@ -1,11 +1,6 @@
 <?php
-/*
- * kontakt.php – kontaktná stránka.
- * Statická stránka: kontaktné údaje firmy, otváracie hodiny, odkazy na
- * sociálne siete a vložená mapa Google s adresou prevádzky.
- */
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();   // session kvôli hlavičke (aby vedela, či je niekto prihlásený)
+    session_start();
 }
 ?>
 <!DOCTYPE html>

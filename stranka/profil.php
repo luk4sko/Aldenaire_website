@@ -1,21 +1,12 @@
 <?php
-/*
- * profil.php – profil prihláseného používateľa.
- * Umožňuje: zmeniť meno a email, zmeniť heslo a nahrať profilovú fotku.
- * Fotku používateľ v prehliadači oreže do kruhu (JavaScript dole v súbore)
- * a sem sa pošle už hotový štvorcový obrázok.
- * Pozn.: pri zmene mena sa meno prepíše aj v rezerváciách a recenziách.
- */
 session_start();
-
-// Na profil sa dostane len prihlásený používateľ.
 if (!isset($_SESSION['username'])) {
     header("Location: login_page.php");
     exit();
 }
 require 'db_config.php';
 
-$uploadDir = 'uploads/profilovky/';   // priečinok, kam sa ukladajú profilové fotky
+$uploadDir = 'uploads/profilovky/';
 
 // Načítanie aktuálneho používateľa
 $stmt = $pdo->prepare("SELECT * FROM pouzivatelia WHERE username = ?");

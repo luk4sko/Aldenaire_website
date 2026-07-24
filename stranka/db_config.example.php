@@ -1,17 +1,7 @@
 <?php
-/*
- * db_config.example.php – VZOR (šablóna) pripojenia k databáze.
- *
- * Skutočný súbor "db_config.php" zámerne NIE JE na GitHube – je uvedený
- * v súbore .gitignore, aby sa heslo k databáze nikdy nezverejnilo.
- *
- * AKO TO SPREVÁDZKOVAŤ:
- *   1) Skopíruj tento súbor a kópiu premenuj na  db_config.php
- *   2) Do kópie doplň vlastné údaje (adresa servera, meno, heslo).
- *
- * Ostatné stránky si potom pripojenie vyžiadajú cez:  require 'db_config.php';
- */
-
+// Vzor pripojenia k databáze.
+// Skopíruj tento súbor ako db_config.php a doplň svoje údaje.
+// (db_config.php je v .gitignore, aby sa heslo nedostalo na GitHub.)
 $pdo = new PDO(
     "pgsql:host=ADRESA_SERVERA;port=5432;dbname=postgres",
     "POUZIVATELSKE_MENO",

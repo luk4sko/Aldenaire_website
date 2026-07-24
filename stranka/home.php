@@ -1,26 +1,14 @@
-<?php
-/*
- * home.php – Úvodná (domovská) stránka webu Aldenaire Fitness Club.
- * Je to statická stránka (nepracuje s databázou) – obsahuje:
- *   1) hero sekciu s hlavným nadpisom a tlačidlom na rezerváciu,
- *   2) krátke predstavenie trénerov,
- *   3) ukážku doplnkových produktov.
- * Spoločnú hlavičku a pätu načítava cez include zo súborov v priečinku "includes".
- */
-?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domov – Aldenaire</title>
-    <!-- ?v=10 = "verzia" súboru. Po zmene štýlov číslo zvýšime, aby prehliadač načítal nový CSS. -->
     <link rel="stylesheet" href="style.css?v=12">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="home_page">
 
-    <!-- Spoločná hlavička (logo, menu, profilové menu) -->
     <?php include 'includes/header.php'; ?>
 
 <main>

@@ -1,12 +1,5 @@
 <?php
-/*
- * cennik.php – stránka Obchod.
- * Produkty sa načítajú zo spoločného súboru produkty.php (pole $produkty).
- * Cez PHP cyklus foreach sa z každého produktu automaticky vytvorí kartička.
- * Vypredané produkty dostanú triedu "sold-out" (prečiarknutá cena, bez tlačidla).
- * Tlačidlo "Pridať do košíka" pošle id produktu do košíka (kosik.php).
- */
-require 'produkty.php';   // načíta pole $produkty
+require 'produkty.php';   // pole $produkty
 ?>
 <!DOCTYPE html>
 <html lang="sk">

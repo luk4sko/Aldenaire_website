@@ -1,41 +1,27 @@
 <?php
-/*
- * kosik.php – nákupný košík a pokladňa (checkout).
- *
- * Košík je uložený v session ako pole:  $_SESSION['kosik'] = [ id_produktu => počet_kusov ]
- * Stránka rieši:
- *   - pridanie produktu (tlačidlo z obchodu),
- *   - zmenu počtu kusov (+ / -) a odstránenie položky,
- *   - odoslanie objednávky – vyplnia sa údaje a spôsob doručenia
- *     (na adresu alebo cez Packeta), objednávka sa uloží do tabuľky "objednavky".
- *
- * Platba zatiaľ nie je – objednávka sa len zaznamená.
- */
 session_start();
 date_default_timezone_set('Europe/Bratislava');
 require 'db_config.php';
-require 'produkty.php';          // pole $produkty (spoločné s obchodom)
+require 'produkty.php';
 
-// Cena dopravy podľa spôsobu doručenia (v eurách)
+// cena dopravy podľa spôsobu doručenia
 $DOPRAVA = ['adresa' => 3.90, 'packeta' => 2.90];
 
-// Ak košík ešte neexistuje, vytvoríme prázdny
 if (!isset($_SESSION['kosik'])) {
     $_SESSION['kosik'] = [];
 }
 
-/* ---------- PRIDANIE PRODUKTU DO KOŠÍKA (tlačidlo z obchodu) ---------- */
+// pridanie produktu do košíka
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pridat'])) {
     $id = (int)$_POST['pridat'];
-    // pridáme len ak produkt existuje a je na predaj
     if (isset($produkty[$id]) && $produkty[$id]['status'] === 'Na predaj') {
         $_SESSION['kosik'][$id] = ($_SESSION['kosik'][$id] ?? 0) + 1;
     }
-    header('Location: kosik.php');   // presmerovanie, aby obnovenie stránky znova nepridalo
+    header('Location: kosik.php');
     exit();
 }
 
-/* ---------- ZVÝŠENIE POČTU KUSOV (+) ---------- */
+// pridať kus
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pripocitaj'])) {
     $id = (int)$_POST['pripocitaj'];
     if (isset($produkty[$id])) {
@@ -45,20 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pripocitaj'])) {
     exit();
 }
 
-/* ---------- ZNÍŽENIE POČTU KUSOV (-) ---------- */
+// ubrať kus (pri 0 sa položka odstráni)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['uber'])) {
     $id = (int)$_POST['uber'];
     if (isset($_SESSION['kosik'][$id])) {
         $_SESSION['kosik'][$id]--;
         if ($_SESSION['kosik'][$id] <= 0) {
-            unset($_SESSION['kosik'][$id]);   // pri 0 kusoch položku odstránime
+            unset($_SESSION['kosik'][$id]);
         }
     }
     header('Location: kosik.php');
     exit();
 }
 
-/* ---------- ODSTRÁNENIE POLOŽKY (kôš) ---------- */
+// odstrániť položku
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['odobrat'])) {
     $id = (int)$_POST['odobrat'];
     unset($_SESSION['kosik'][$id]);
@@ -66,14 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['odobrat'])) {
     exit();
 }
 
-/* ---------- ODOSLANIE OBJEDNÁVKY (pokladňa) ---------- */
+// odoslanie objednávky
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['objednavka'])) {
     $meno    = trim($_POST['meno'] ?? '');
     $email   = trim($_POST['email'] ?? '');
     $telefon = trim($_POST['telefon'] ?? '');
     $sposob  = $_POST['sposob'] ?? '';
 
-    // Podľa spôsobu doručenia poskladáme adresu a overíme povinné polia
+    // podľa spôsobu doručenia poskladáme adresu
     if ($sposob === 'adresa') {
         $ulica = trim($_POST['ulica'] ?? '');
         $mesto = trim($_POST['mesto'] ?? '');
@@ -94,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['objednavka'])) {
     } elseif ($meno === '' || $email === '' || $telefon === '' || !$adresaOk) {
         $chyba = "Prosím vyplň všetky povinné údaje.";
     } else {
-        // Poskladáme text položiek a spočítame sumu
+        // text položiek a suma
         $polozkyText = [];
         $medzisucet  = 0;
         foreach ($_SESSION['kosik'] as $id => $ks) {
@@ -107,19 +93,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['objednavka'])) {
         $spolu   = $medzisucet + $doprava;
         $polozky = implode(', ', $polozkyText);
 
-        // Uloženie objednávky do databázy (prepared statement = ochrana pred SQL injection)
         $stmt = $pdo->prepare("INSERT INTO objednavky (meno, email, telefon, sposob_dorucenia, adresa, polozky, spolu)
                                VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$meno, $email, $telefon, $sposob, $adresa, $polozky, $spolu]);
 
-        $_SESSION['kosik'] = [];   // po objednaní košík vyprázdnime
-
-        // Údaje pre potvrdzovaciu hlášku
+        $_SESSION['kosik'] = [];   // vyprázdnime košík
         $hotovo = ['polozky' => $polozky, 'spolu' => $spolu];
     }
 }
 
-/* ---------- PRÍPRAVA ÚDAJOV NA ZOBRAZENIE ---------- */
+// príprava údajov na zobrazenie
 $polozkyKosik = [];
 $medzisucet   = 0;
 foreach ($_SESSION['kosik'] as $id => $ks) {
